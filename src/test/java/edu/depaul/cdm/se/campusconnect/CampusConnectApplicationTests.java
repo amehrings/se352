@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se.sampleproject;
+package edu.depaul.cdm.se.campusconnect;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SampleProjectApplicationTests {
+public class CampusConnectApplicationTests {
 
 	@Test
 	public void contextLoads() {

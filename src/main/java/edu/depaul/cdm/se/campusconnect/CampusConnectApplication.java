@@ -1,12 +1,12 @@
-package edu.depaul.cdm.se.sampleproject;
+package edu.depaul.cdm.se.campusconnect;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SampleProjectApplication {
+public class CampusConnectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SampleProjectApplication.class, args);
+		SpringApplication.run(CampusConnectApplication.class, args);
 	}
 }

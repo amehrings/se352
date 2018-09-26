@@ -28,7 +28,7 @@ public class CampusConnectApplication {
         CourseService services = new CourseService();
         Course course = new Course();
         Course course2 = new Course();
-        course.setCourseID(1234567890);
+        course.setCourseID(76543);
         System.out.println("Setting course id to 1234567890");
         System.out.println("Setting course2 id to 1111111111");
 

@@ -18,7 +18,7 @@ public class MongoDBCourseDAO {
 	private DBCollection col;
 
 	public MongoDBCourseDAO(MongoClient mongo) {
-		this.col = mongo.getDB("").getCollection("Courses");
+		this.col = mongo.getDB("campusconnectsandbox").getCollection("courses");
 	}
 
 	public Course createCourse(Course c) {

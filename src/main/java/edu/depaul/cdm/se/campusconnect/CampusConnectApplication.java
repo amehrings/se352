@@ -15,26 +15,26 @@ public class CampusConnectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CampusConnectApplication.class, args);
 		
-		CampusConnectApplication campusConnectApplication = new CampusConnectApplication();
-		
-		campusConnectApplication.createExample();
+//		CampusConnectApplication campusConnectApplication = new CampusConnectApplication();
+//		
+//		campusConnectApplication.createExample();
 //		campusConnectApplication.showEntities();
 //	    campusConnectApplication.deleteExample();
 //	    campusConnectApplication.showEntities();
 	}
 	
-	private void createExample() {
-        CourseService services = new CourseService();
-        Course course = new Course();
-        Course course2 = new Course();
-        course.setId("CSC394");
-        System.out.println("Setting course id to CSC394");
-//        System.out.println("Setting course2 id to 1111111111");
-
-        course2.setId("SE352");
-        services.saveCourse(course2);
-        services.saveCourse(course);
-    }
+//	private void createExample() {
+//        CourseService services = new CourseService();
+//        Course course = new Course();
+//        Course course2 = new Course();
+//        course.setId("CSC394");
+//        System.out.println("Setting course id to CSC394");
+////        System.out.println("Setting course2 id to 1111111111");
+//
+//        course2.setId("SE352");
+//        services.saveCourse(course2);
+//        services.saveCourse(course);
+//    }
     
 //    private void deleteExample() {
 //        CourseService services = new CourseService();

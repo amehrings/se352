@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import edu.depaul.cdm.se.campusconnect.ICourse;
 import edu.depaul.cdm.se.campusconnect.Course;
 import java.util.List;
-import java.util.ArrayList;
 
 @SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
 public class CampusConnectApplication {
@@ -28,11 +27,11 @@ public class CampusConnectApplication {
         CourseService services = new CourseService();
         Course course = new Course();
         Course course2 = new Course();
-        course.setCourseID(76543);
+        course.setCourseID(66666);
         System.out.println("Setting course id to 1234567890");
         System.out.println("Setting course2 id to 1111111111");
 
-        course2.setCourseID(1111111111);
+        course2.setCourseID(1234567890);
         services.saveCourse(course2);
         services.saveCourse(course);
     }

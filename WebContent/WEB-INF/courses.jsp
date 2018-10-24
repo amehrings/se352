@@ -29,9 +29,12 @@ table,th,td {
 	<%-- Edit Request --%>
 	<c:if test="${requestScope.course ne null}">
 		<form action='<c:out value="${editURL}"></c:out>' method="post">
-			ID: <input type="text" value="${requestScope.course.id}"
-				readonly="readonly" name="id"><br> Course Name: <input
+			Course ID: <input type="text" value="${requestScope.course.id}"
+				readonly="readonly" name="id">
+				<br> Course Name: <input
 				type="text" value="${requestScope.course.name}" name="name">
+				<br> Course Location: <input
+				type="text" value="${requestScope.course.location}" name="location">
 				<br> <input type="submit" value="Edit Course">
 		</form>
 	</c:if>
@@ -40,7 +43,8 @@ table,th,td {
 	<c:if test="${requestScope.course eq null}">
 		<form action='<c:out value="${addURL}"></c:out>' method="post">
 			Course Name: <input type="text" name="name"> 
-			<input type="submit" value="Add Course">
+			<br> Course Location: <input type="text" name="location">
+			<br> <input type="submit" value="Add Course">
 		</form>
 	</c:if>
 
@@ -64,7 +68,7 @@ table,th,td {
 					<tr>
 						<td><c:out value="${course.id}"></c:out></td>
 						<td><c:out value="${course.name}"></c:out></td>
-						<%-- <td><c:out value="${person.country}"></c:out></td> --%>
+						<td><c:out value="${person.location}"></c:out></td>
 						<td><a
 							href='<c:out value="${editURL}" escapeXml="true"></c:out>'>Edit</a></td>
 						<td><a

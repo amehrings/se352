@@ -18,33 +18,33 @@ public class CampusConnectApplication {
 		CampusConnectApplication campusConnectApplication = new CampusConnectApplication();
 		
 		campusConnectApplication.createExample();
-		campusConnectApplication.showEntities();
-	    campusConnectApplication.deleteExample();
-	    campusConnectApplication.showEntities();
+//		campusConnectApplication.showEntities();
+//	    campusConnectApplication.deleteExample();
+//	    campusConnectApplication.showEntities();
 	}
 	
 	private void createExample() {
         CourseService services = new CourseService();
         Course course = new Course();
         Course course2 = new Course();
-        course.setCourseID(66666);
-        System.out.println("Setting course id to 1234567890");
-        System.out.println("Setting course2 id to 1111111111");
+        course.setId("CSC394");
+        System.out.println("Setting course id to CSC394");
+//        System.out.println("Setting course2 id to 1111111111");
 
-        course2.setCourseID(1234567890);
+        course2.setId("SE352");
         services.saveCourse(course2);
         services.saveCourse(course);
     }
     
-    private void deleteExample() {
-        CourseService services = new CourseService();
-        if (services.deleteCourse(1234567890) > 0)
-            System.out.println("1234567890 has been deleted!");
-    }
+//    private void deleteExample() {
+//        CourseService services = new CourseService();
+////        if (services.deleteCourse("SE352") > 0)
+////            System.out.println("1234567890 has been deleted!");
+//    }
 
-    private void showEntities() {
-        CourseService services = new CourseService();
-        List<ICourse> courses = services.getAllCourses();
-        System.out.println(courses);
-    }
+//    private void showEntities() {
+//        CourseService services = new CourseService();
+//        List<ICourse> courses = services.getAllCourses();
+//        System.out.println(courses);
+//    }
 }

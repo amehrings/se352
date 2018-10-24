@@ -37,7 +37,7 @@ public class CourseService {
             @Override
             public void apply(Document d) {
                 Course course = new Course();
-                course.setCourseID(d.get(courseID, Long.class));
+                course.setId(d.get(courseID, String.class));
                 courses.add(course);
             }
 
@@ -47,7 +47,7 @@ public class CourseService {
 	
 	public void saveCourse(ICourse course) {
 	       db.insertOne(new Document().
-	                append(courseID, course.getCourseID()));
+	                append(courseID, course.getId()));
 	}
 	
 	

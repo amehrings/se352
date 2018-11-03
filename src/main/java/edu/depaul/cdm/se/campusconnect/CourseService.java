@@ -50,5 +50,9 @@ public class CourseService {
 	                append(courseID, course.getId()));
 	}
 	
+	public MongoCollection<Document> getDB() {
+		return db;
+	}
+	
 	
 }

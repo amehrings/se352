@@ -78,7 +78,7 @@
 	<br/>
 	<br/>
 	<br/>
-	<!-- USERS -->
+	<%-- <!-- USERS -->
 	<c:url value="/addUser" var="addUserURL"></c:url>
 	<c:url value="/editUser" var="editUserURL"></c:url>
 	<c:if test="${requestScope.user eq null}">
@@ -88,7 +88,7 @@
 			<br> Date of Birth: <input type="text" name="dateOfBirth">
 			<br> <input type="submit" value="Add User">
 		</form>
-	</c:if>
+	</c:if> --%>
 	
 	
 	

@@ -20,7 +20,7 @@ public class MongoDBCourseDAO {
  	
 	@SuppressWarnings("deprecation")
 	public MongoDBCourseDAO(MongoClient mongo) {
-		this.col = mongo.getDB("campusconnect").getCollection("courses");
+		this.col = mongo.getDB("campusconnectsandbox").getCollection("courses");
 	}
  	
 	public Course createCourse(Course c) {

@@ -10,55 +10,82 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
+	<div>
 	<%-- Courses List Logic --%>
-	<%-- <c:if test="${not empty requestScope.courses}"> --%>
-	<table>
-		<tbody>
-			<tr>
-				<th>ID</th>
-				<th>Name</th>
-				<th>Edit</th>
-				<th>Delete</th>
-			</tr>
-			<c:forEach items="${requestScope.courses}" var="course">
-				<c:url value="/editCourse" var="editURL">
-					<c:param name="id" value="${course.id}"></c:param>
-				</c:url>
-				<c:url value="/deleteCourse" var="deleteURL">
-					<c:param name="id" value="${course.id}"></c:param>
-				</c:url>
+	<h3>Course Cart Courses </h3>
+	<c:if test="${not empty requestScope.courses}">
+		<table>
+			<tbody>
 				<tr>
-					<td><c:out value="${course.id}"></c:out></td>
-					<td><c:out value="${course.name}"></c:out></td>
-					<td><c:out value="${person.location}"></c:out></td>
-					<td><a
-						href='<c:out value="${editURL}" escapeXml="true"></c:out>'>Edit</a></td>
-					<td><a
-						href='<c:out value="${deleteURL}" escapeXml="true"></c:out>'>Delete</a></td>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Edit</th>
+					<th>Delete</th>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	<%-- </c:if> --%>
-	
-	<br/>
-	<br/>
-	<br/>
-	<%-- <!-- USERS -->
-	<c:url value="/addUser" var="addUserURL"></c:url>
-	<c:url value="/editUser" var="editUserURL"></c:url>
-	<c:if test="${requestScope.user eq null}">
-		<form action='<c:out value="${addUserURL}"></c:out>' method="post">
-			Name: <input type="text" name="name"> 
-			<br> Courses (comma separated): <input type="text" name="courses">
-			<br> Date of Birth: <input type="text" name="dateOfBirth">
-			<br> <input type="submit" value="Add User">
-		</form>
-	</c:if> --%>
-	
-	
-	
-	
-	
+				<c:forEach items="${requestScope.courses}" var="course">
+					<c:url value="/editCourse" var="editURL">
+						<c:param name="id" value="${course.id}"></c:param>
+					</c:url>
+					<c:url value="/deleteCourse" var="deleteURL">
+						<c:param name="id" value="${course.id}"></c:param>
+					</c:url>
+					<tr>
+						<td><c:out value="${course.id}"></c:out></td>
+						<td><c:out value="${course.name}"></c:out></td>
+						<td><c:out value="${person.location}"></c:out></td>
+						<td><a
+							href='<c:out value="${editURL}" escapeXml="true"></c:out>'>Edit</a></td>
+						<td><a
+							href='<c:out value="${deleteURL}" escapeXml="true"></c:out>'>Delete</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</c:if>
+	<hr>
+	<h3>Actions:</h3>
+	<p><a href="enrollCourse">Search for Courses</a></p>
+	<p><a href="enrollCourse">View Course Cart Courses</a></p>
+	<p><a href="enrollCourse">View Enrolled Courses</a></p>
+	</div>
+	<br/><br/><br/>	
+	<div>
+		<h3>Enrolled Courses </h3>
+		<c:if test="${not empty requestScope.enrollCourses}">
+			<p>test</p>
+			<table>
+				<tbody>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+					<c:forEach items="${requestScope.enrollCourses}" var="course">
+						<c:url value="/editCourse" var="editURL">
+							<c:param name="id" value="${course.id}"></c:param>
+						</c:url>
+						<c:url value="/deleteCourse" var="deleteURL">
+							<c:param name="id" value="${course.id}"></c:param>
+						</c:url>
+						<tr>
+							<td><c:out value="${course.id}"></c:out></td>
+							<td><c:out value="${course.name}"></c:out></td>
+							<td><c:out value="${person.location}"></c:out></td>
+							<td><a
+								href='<c:out value="${editURL}" escapeXml="true"></c:out>'>Edit</a></td>
+							<td><a
+								href='<c:out value="${deleteURL}" escapeXml="true"></c:out>'>Delete</a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</c:if>
+		<hr>
+		<h3>Actions:</h3>
+		<p><a href="enrollCourse">Search for Courses</a></p>
+		<p><a href="enrollCourse">View Course Cart Courses</a></p>
+		<p><a href="enrollCourse">View Enrolled Courses</a></p>
+	</div>
 </body>
 </html>

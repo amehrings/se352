@@ -45,10 +45,10 @@
 		</form>
 	</c:if>	
 	
-	<form action="courseScheduler">
+	<form action="getCourses">
 		<input type="submit" value="View Course Scheduler"/>
 	</form>
-	<br> <a href="/campusConnect-0.0.1-SNAPSHOT/courseScheduler.jsp"><button>View Course Scheduler</button></a>
+	<br> 
 	<%-- Courses List Logic --%>
 	<c:if test="${not empty requestScope.courses}">
 		<table>

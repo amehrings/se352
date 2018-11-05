@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Manage Courses</title>
+<title>Enrolled Courses</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.min.css">
 </head>
 <body>
@@ -21,21 +21,12 @@
 	</c:if>
 	<c:url value="/enrollCourse" var="enrollURL"></c:url>
 
- 	<%-- Add Request --%>
-<%-- 	<c:if test="${requestScope.course eq null}"> --%>
-<%-- 		<input action='<c:out value="${enrollURL}"></c:out>' method="post"> --%>
-<!-- 			Course Name: <input type="text" name="name">  -->
-<!-- 			<br> Course Location: <input type="text" name="location"> -->
-<!-- 			<br> <input type="submit" value="Add Course"> -->
-<!-- 		</> -->
-<%-- 	</c:if>	 --%>
 
 	<%-- Courses List Logic --%>
 	<c:if test="${not empty requestScope.courses}">
 		<table>
 			<tbody>
 				<tr>
-<!-- 					<th>ID</th> -->
 					<th>Name</th>
 					<th>Enroll</th>
 				</tr>
@@ -73,7 +64,7 @@
 	</c:if> --%>
 	
 	
-	<a href="enrolledCourses">View Enrolled Courses</a>
+	
 	<a href="courses.jsp">Return to Courses</a>
 	
 </body>

@@ -21,33 +21,13 @@ public class CourseSchedulerServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		//String id = request.getParameter("id");
-		String name = request.getParameter("name");
-		String location = request.getParameter("location");
-		if ((name == null || name.equals(""))
-				|| (location == null || location.equals(""))) {
-			request.setAttribute("error", "Mandatory Parameters Missing");
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(
-					"/courses.jsp");
-			rd.forward(request, response);
-		} else {
-			Course c = new Course();
-			c.setLocation(location);
-			c.setName(name);
-			//c.setId(id);
-			MongoClient mongo = (MongoClient) request.getServletContext()
-					.getAttribute("MONGO_CLIENT");
-			MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
-			courseDAO.createCourse(c);
-			System.out.println("Course Added Successfully with id="+c.getId());
-			request.setAttribute("success", "Course Added Successfully");
-			List<Course> courses = courseDAO.readAllCourse();
-			request.setAttribute("courses", courses);
-
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(
-					"/courses.jsp");
-			rd.forward(request, response);
-		}
+		String id = request.getParameter("id");
+		MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
+		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
+		List<Course> courses = courseDAO.readAllCourse();
+		request.setAttribute("courses", courses);
+ 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/courseScheduler.jsp");
+		rd.forward(request, response);
 	}
 	
 	
@@ -59,25 +39,21 @@ public class CourseSchedulerServlet extends HttpServlet {
 		if ((name == null || name.equals(""))
 				|| (location == null || location.equals(""))) {
 			request.setAttribute("error", "Mandatory Parameters Missing");
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(
-					"/courses.jsp");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/courses.jsp");
 			rd.forward(request, response);
 		} else {
 			Course c = new Course();
 			c.setLocation(location);
 			c.setName(name);
 			//c.setId(id);
-			MongoClient mongo = (MongoClient) request.getServletContext()
-					.getAttribute("MONGO_CLIENT");
+			MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
 			MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
 			courseDAO.createCourse(c);
 			System.out.println("Course Added Successfully with id="+c.getId());
 			request.setAttribute("success", "Course Added Successfully");
 			List<Course> courses = courseDAO.readAllCourse();
 			request.setAttribute("courses", courses);
-
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(
-					"/courses.jsp");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/courses.jsp");
 			rd.forward(request, response);
 		}
 	}

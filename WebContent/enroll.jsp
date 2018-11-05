@@ -19,56 +19,38 @@
 		<strong style="color: green;"><c:out
 				value="${requestScope.success}"></c:out></strong>
 	</c:if>
-	<c:url value="/addCourse" var="addURL"></c:url>
-	<c:url value="/editCourse" var="editURL"></c:url>
+	<c:url value="/enrollCourse" var="enrollURL"></c:url>
 
-	<%-- Edit Request --%>
-	<c:if test="${requestScope.course ne null}">
-		<form action='<c:out value="${editURL}"></c:out>' method="post">
-			Course ID: <input type="text" value="${requestScope.course.id}"
-				readonly="readonly" name="id">
-				<br> Course Name: <input
-				type="text" value="${requestScope.course.name}" name="name">
-				<br> Course Location: <input
-				type="text" value="${requestScope.course.location}" name="location">
-				<br> <input type="submit" value="Edit Course">
-		</form>
-	</c:if>
-
-	<%-- Add Request --%>
-	<c:if test="${requestScope.course eq null}">
-		<form action='<c:out value="${addURL}"></c:out>' method="post">
-			Course Name: <input type="text" name="name"> 
-			<br> Course Location: <input type="text" name="location">
-			<br> <input type="submit" value="Add Course">
-		</form>
-	</c:if>	
+ 	<%-- Add Request --%>
+<%-- 	<c:if test="${requestScope.course eq null}"> --%>
+<%-- 		<input action='<c:out value="${enrollURL}"></c:out>' method="post"> --%>
+<!-- 			Course Name: <input type="text" name="name">  -->
+<!-- 			<br> Course Location: <input type="text" name="location"> -->
+<!-- 			<br> <input type="submit" value="Add Course"> -->
+<!-- 		</> -->
+<%-- 	</c:if>	 --%>
 
 	<%-- Courses List Logic --%>
 	<c:if test="${not empty requestScope.courses}">
 		<table>
 			<tbody>
 				<tr>
-					<th>ID</th>
+<!-- 					<th>ID</th> -->
 					<th>Name</th>
-					<th>Edit</th>
-					<th>Delete</th>
+					<th>Enroll</th>
 				</tr>
 				<c:forEach items="${requestScope.courses}" var="course">
-					<c:url value="/editCourse" var="editURL">
-						<c:param name="id" value="${course.id}"></c:param>
-					</c:url>
-					<c:url value="/deleteCourse" var="deleteURL">
+					<c:url value="/enrollCourse" var="enrollURL">
 						<c:param name="id" value="${course.id}"></c:param>
 					</c:url>
 					<tr>
-						<td><c:out value="${course.id}"></c:out></td>
+						<td><input type="checkbox" action="<c:out value="${course.id}"></c:out>"/></td>
 						<td><c:out value="${course.name}"></c:out></td>
 						<td><c:out value="${person.location}"></c:out></td>
 						<td><a
-							href='<c:out value="${editURL}" escapeXml="true"></c:out>'>Edit</a></td>
-						<td><a
-							href='<c:out value="${deleteURL}" escapeXml="true"></c:out>'>Delete</a></td>
+							href='<c:out value="${enrollURL}" escapeXml="true"></c:out>'>Enroll</a></td>
+<!-- 						<td><a -->
+<%-- 							href='<c:out value="${deleteURL}" escapeXml="true"></c:out>'>Delete</a></td> --%>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -90,9 +72,9 @@
 		</form>
 	</c:if> --%>
 	
-		<a href="enrollCourse">Course Enroll</a>
-
-<%-- 	<a href="<c:url value="enrollCourse.jsp" var="enrollURL"></c:url>"><button>Course Enroll</button></a> --%>
+	
+	
+	<a href="courses.jsp">Return to Courses</a>
 	
 </body>
 </html>

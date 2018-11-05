@@ -36,6 +36,14 @@ public class MongoDBCourseDAO {
 		this.col.update(query, CourseConverter.toDBObject(c));
 	}
  	
+ 	public Course enrollCourse(Course c) {
+ 		DBObject doc = CourseConverter.toDBObject(c);
+		this.col.insert(doc);
+		ObjectId id = (ObjectId) doc.get("_id");
+		c.setId(id.toString());
+		return c;
+ 	}
+ 	
  	public List<Course> readAllCourse() {
 		List<Course> data = new ArrayList<Course>();
 		DBCursor cursor = col.find();

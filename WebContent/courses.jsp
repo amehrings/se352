@@ -21,6 +21,7 @@
 	</c:if>
 	<c:url value="/addCourse" var="addURL"></c:url>
 	<c:url value="/editCourse" var="editURL"></c:url>
+	<c:url value="courseScheduler" var="schedulerURL"></c:url>
 
 	<%-- Edit Request --%>
 	<c:if test="${requestScope.course ne null}">
@@ -43,7 +44,11 @@
 			<br> <input type="submit" value="Add Course">
 		</form>
 	</c:if>	
-
+	
+	<form action="courseScheduler">
+		<input type="submit" value="View Course Scheduler"/>
+	</form>
+	<br> <a href="/campusConnect-0.0.1-SNAPSHOT/courseScheduler.jsp"><button>View Course Scheduler</button></a>
 	<%-- Courses List Logic --%>
 	<c:if test="${not empty requestScope.courses}">
 		<table>
@@ -63,7 +68,6 @@
 					</c:url>
 					<tr>
 						<td><c:out value="${course.id}"></c:out></td>
-						<td><c:out value="${course.name}"></c:out></td>
 						<td><c:out value="${person.location}"></c:out></td>
 						<td><a
 							href='<c:out value="${editURL}" escapeXml="true"></c:out>'>Edit</a></td>

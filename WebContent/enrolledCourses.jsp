@@ -27,8 +27,9 @@
 		<table>
 			<tbody>
 				<tr>
+					<th></th>
 					<th>Name</th>
-					<th>Enroll</th>
+					<th>Location</th>
 				</tr>
 				<c:forEach items="${requestScope.courses}" var="course">
 					<c:url value="/enrolledCourses" var="enrolledURL">
@@ -37,9 +38,7 @@
 					<tr>
 						<td><input type="checkbox" action="<c:out value="${course.id}"></c:out>"/></td>
 						<td><c:out value="${course.name}"></c:out></td>
-						<td><c:out value="${person.location}"></c:out></td>
-						<td><a
-							href='<c:out value="${enrollURL}" escapeXml="true"></c:out>'>Enroll</a></td>
+						<td><c:out value="${course.location}"></c:out></td>
 <!-- 						<td><a -->
 <%-- 							href='<c:out value="${deleteURL}" escapeXml="true"></c:out>'>Delete</a></td> --%>
 					</tr>
@@ -47,7 +46,14 @@
 			</tbody>
 		</table>
 	</c:if>
-	
+	<form> 
+<!-- 	<form action="swapCourse"> -->
+		<input type="submit" value="Swap"/>
+	</form>
+	<form>
+<!-- 	<form action="dropCourses"> -->
+		<input type="submit" value="Drop"/>
+	</form>
 	<br/>
 	<br/>
 	<br/>

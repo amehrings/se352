@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Manage Courses</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.min.css">
 </head>
 <body>
 	<%-- Course Add/Edit logic --%>
@@ -94,9 +94,9 @@
 		</form>
 	</c:if> --%>
 	
-	
-	
-	
+		<a href="enrollCourse">Course Enroll</a>
+
+<%-- 	<a href="<c:url value="enrollCourse.jsp" var="enrollURL"></c:url>"><button>Course Enroll</button></a> --%>
 	
 </body>
 </html>

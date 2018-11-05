@@ -13,13 +13,23 @@ import com.mongodb.MongoClient;
  @WebServlet("/enrolledCourses")
 public class EnrolledCoursesServlet extends HttpServlet {
  	private static final long serialVersionUID = -6554920927964049383L;
+ 	
  	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		String id = request.getParameter("id");
+//		if (id == null || "".equals(id)) {
+//			throw new ServletException("id missing for edit operation");
+//		}
+//		System.out.println("Course edit requested with id=" + id);
 		MongoClient mongo = (MongoClient) request.getServletContext()
 				.getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
-		List<Course> courses = courseDAO.readAllCourse();
-		request.setAttribute("enrollCourses", courses);
+//		Course c = new Course();
+//		c.setId(id);
+//		c = courseDAO.readCourse(c);
+//		request.setAttribute("course", c);
+		List<Course> courses = courseDAO.readAllEnrolledCourse();
+		request.setAttribute("courses", courses);
  		RequestDispatcher rd = getServletContext().getRequestDispatcher(
 				"/enrolledCourses.jsp");
 		rd.forward(request, response);

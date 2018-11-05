@@ -17,10 +17,12 @@ import com.mongodb.MongoClient;
 public class MongoDBCourseDAO {
  	
 	private DBCollection col;
+	private DBCollection enrolledCol;
  	
 	@SuppressWarnings("deprecation")
 	public MongoDBCourseDAO(MongoClient mongo) {
 		this.col = mongo.getDB("campusconnectsandbox").getCollection("courses");
+		this.enrolledCol = mongo.getDB("campusconnectsandbox").getCollection("enrollCourses");
 	}
  	
 	public Course createCourse(Course c) {
@@ -38,11 +40,22 @@ public class MongoDBCourseDAO {
  	
  	public Course enrollCourse(Course c) {
  		DBObject doc = CourseConverter.toDBObject(c);
-		this.col.insert(doc);
+		this.enrolledCol.insert(doc);
 		ObjectId id = (ObjectId) doc.get("_id");
 		c.setId(id.toString());
 		return c;
  	}
+ 	
+ 	public List<Course> readAllEnrolledCourse() {
+		List<Course> data = new ArrayList<Course>();
+		DBCursor cursor = enrolledCol.find();
+		while (cursor.hasNext()) {
+			DBObject doc = cursor.next();
+			Course c = CourseConverter.toCourse(doc);
+			data.add(c);
+		}
+		return data;
+	}
  	
  	public List<Course> readAllCourse() {
 		List<Course> data = new ArrayList<Course>();

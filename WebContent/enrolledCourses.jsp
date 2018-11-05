@@ -19,7 +19,7 @@
 		<strong style="color: green;"><c:out
 				value="${requestScope.success}"></c:out></strong>
 	</c:if>
-	<c:url value="/enrollCourse" var="enrollURL"></c:url>
+	<c:url value="/enrolledCourses" var="enrolledURL"></c:url>
 
 
 	<%-- Courses List Logic --%>
@@ -31,7 +31,7 @@
 					<th>Enroll</th>
 				</tr>
 				<c:forEach items="${requestScope.courses}" var="course">
-					<c:url value="/enrollCourse" var="enrollURL">
+					<c:url value="/enrolledCourses" var="enrolledURL">
 						<c:param name="id" value="${course.id}"></c:param>
 					</c:url>
 					<tr>

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
  import edu.depaul.cdm.se.campusconnect.MongoDBCourseDAO;
 import edu.depaul.cdm.se.campusconnect.Course;
 import com.mongodb.MongoClient;
- @WebServlet("/enrolledCourse")
+ @WebServlet("/enrolledCourses")
 public class EnrolledCoursesServlet extends HttpServlet {
  	private static final long serialVersionUID = -6554920927964049383L;
  	protected void doGet(HttpServletRequest request,
@@ -46,7 +46,7 @@ public class EnrolledCoursesServlet extends HttpServlet {
 			List<Course> courses = courseDAO.readAllCourse();
 			request.setAttribute("courses", courses);
  			RequestDispatcher rd = getServletContext().getRequestDispatcher(
-					"/enroll.jsp");
+					"/enrolledCourses.jsp");
 			rd.forward(request, response);
 		} else {
 			MongoClient mongo = (MongoClient) request.getServletContext()
@@ -62,7 +62,7 @@ public class EnrolledCoursesServlet extends HttpServlet {
 			List<Course> courses = courseDAO.readAllCourse();
 			request.setAttribute("courses", courses);
  			RequestDispatcher rd = getServletContext().getRequestDispatcher(
-					"/enroll.jsp");
+					"/enrolledCourses.jsp");
 			rd.forward(request, response);
 		}
 	}

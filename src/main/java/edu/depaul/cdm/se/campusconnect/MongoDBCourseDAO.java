@@ -51,13 +51,7 @@ public class MongoDBCourseDAO {
 		this.col.update(query, CourseConverter.toDBObject(c));
 	}
  	
- 	public Course enrollCourse(Course c) {
- 		DBObject doc = CourseConverter.toDBObject(c);
-		this.enrolledCol.insert(doc);
-		ObjectId id = (ObjectId) doc.get("_id");
-		c.setId(id.toString());
-		return c;
- 	}
+ 	
  	
  	public List<Course> readAllEnrolledCourse() {
 		List<Course> data = new ArrayList<Course>();
@@ -103,6 +97,17 @@ public class MongoDBCourseDAO {
 				.append("_id", new ObjectId(c.getId())).get();
 		this.enrolledCol.remove(query);
 	}
+ 	
+ 	public void deletePreEnrolledCourse(Course c) {
+		DBObject query = BasicDBObjectBuilder.start()
+				.append("_id", new ObjectId(c.getId())).get();
+		this.col.remove(query);
+	}
+ 	
+ 	public void enrollCourse(Course c) {
+ 		DBObject doc = CourseConverter.toDBObject(c);
+		this.enrolledCol.insert(doc);
+ 	}
  	
  	public void dropCourse(Course c) {
  		DBObject doc = CourseConverter.toDBObject(c);

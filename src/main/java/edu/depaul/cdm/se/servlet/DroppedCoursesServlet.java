@@ -22,12 +22,15 @@ public class DroppedCoursesServlet extends HttpServlet {
 		MongoClient mongo = (MongoClient) request.getServletContext()
 				.getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
-		Course c = new Course();
-		c.setId(id);
-		c.setLocation(location);
-		c.setName(name);
-		courseDAO.dropCourse(c);
-		courseDAO.deleteEnrolledCourse(c);
+		if(id != null) {
+			Course c = new Course();
+			c.setId(id);
+			c.setLocation(location);
+			c.setName(name);
+			courseDAO.dropCourse(c);
+			courseDAO.deleteEnrolledCourse(c);
+		}
+		
 //		Course c = new Course();
 //		c.setId(id);
 //		c = courseDAO.readCourse(c);

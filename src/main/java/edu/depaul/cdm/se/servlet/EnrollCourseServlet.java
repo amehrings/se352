@@ -27,6 +27,7 @@ public class EnrollCourseServlet extends HttpServlet {
 //		c.setId(id);
 //		c = courseDAO.readCourse(c);
 //		request.setAttribute("course", c);
+		
 		List<Course> courses = courseDAO.readAllCourse();
 		request.setAttribute("courses", courses);
  		RequestDispatcher rd = getServletContext().getRequestDispatcher(

@@ -16,14 +16,24 @@ public class EnrolledCoursesServlet extends HttpServlet {
  	
  	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-//		if (id == null || "".equals(id)) {
+ 		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String location = request.getParameter("location");
+		//		if (id == null || "".equals(id)) {
 //			throw new ServletException("id missing for edit operation");
 //		}
 //		System.out.println("Course edit requested with id=" + id);
 		MongoClient mongo = (MongoClient) request.getServletContext()
 				.getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
+		if(id != null) {
+			Course c = new Course();
+			c.setId(id);
+			c.setLocation(location);
+			c.setName(name);
+			courseDAO.enrollCourse(c);
+			courseDAO.deletePreEnrolledCourse(c);
+		}
 //		Course c = new Course();
 //		c.setId(id);
 //		c = courseDAO.readCourse(c);

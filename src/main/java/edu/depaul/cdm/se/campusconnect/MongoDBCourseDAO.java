@@ -18,11 +18,15 @@ public class MongoDBCourseDAO {
  	
 	private DBCollection col;
 	private DBCollection enrolledCol;
+	private DBCollection droppedCol;
+
  	
 	@SuppressWarnings("deprecation")
 	public MongoDBCourseDAO(MongoClient mongo) {
 		this.col = mongo.getDB("campusconnectsandbox").getCollection("courses");
 		this.enrolledCol = mongo.getDB("campusconnectsandbox").getCollection("enrollCourses");
+		this.droppedCol = mongo.getDB("campusconnectsandbox").getCollection("dropCourses");
+
 	}
  	
 	public Course createCourse(Course c) {
@@ -32,6 +36,15 @@ public class MongoDBCourseDAO {
 		c.setId(id.toString());
 		return c;
 	}
+	
+	public Course createEnrolledCourse(Course c) {
+		DBObject doc = CourseConverter.toDBObject(c);
+		this.enrolledCol.insert(doc);
+		ObjectId id = (ObjectId) doc.get("_id");
+		c.setId(id.toString());
+		return c;
+	}
+	
  	public void updateCourse(Course c) {
 		DBObject query = BasicDBObjectBuilder.start()
 				.append("_id", new ObjectId(c.getId())).get();
@@ -57,6 +70,17 @@ public class MongoDBCourseDAO {
 		return data;
 	}
  	
+ 	public List<Course> readAllDroppedCourse() {
+		List<Course> data = new ArrayList<Course>();
+		DBCursor cursor = droppedCol.find();
+		while (cursor.hasNext()) {
+			DBObject doc = cursor.next();
+			Course c = CourseConverter.toCourse(doc);
+			data.add(c);
+		}
+		return data;
+	}
+ 	
  	public List<Course> readAllCourse() {
 		List<Course> data = new ArrayList<Course>();
 		DBCursor cursor = col.find();
@@ -72,6 +96,20 @@ public class MongoDBCourseDAO {
 		DBObject query = BasicDBObjectBuilder.start()
 				.append("_id", new ObjectId(c.getId())).get();
 		this.col.remove(query);
+	}
+ 	
+ 	public void deleteEnrolledCourse(Course c) {
+		DBObject query = BasicDBObjectBuilder.start()
+				.append("_id", new ObjectId(c.getId())).get();
+		this.enrolledCol.remove(query);
+	}
+ 	
+ 	public void dropCourse(Course c) {
+ 		DBObject doc = CourseConverter.toDBObject(c);
+		this.droppedCol.insert(doc);
+//		ObjectId id = (ObjectId) doc.get("_id");
+//		c.setId(id.toString());
+//		c.setName(name);
 	}
  	
  	public Course readCourse(Course c) {

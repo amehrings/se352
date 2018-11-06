@@ -42,38 +42,21 @@ public class EnrolledCoursesServlet extends HttpServlet {
 		}
  		String name = request.getParameter("name");
 		String location = request.getParameter("location");
- 		if ((name == null || name.equals(""))
-				|| (location == null || location.equals(""))) {
-			request.setAttribute("error", "Name and location can't be empty");
-			MongoClient mongo = (MongoClient) request.getServletContext()
-					.getAttribute("MONGO_CLIENT");
-			MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
-			Course c = new Course();
-			c.setId(id);
-			c.setName(name);
-			c.setLocation(location);
-			request.setAttribute("course", c);
-			List<Course> courses = courseDAO.readAllCourse();
-			request.setAttribute("courses", courses);
- 			RequestDispatcher rd = getServletContext().getRequestDispatcher(
-					"/enrolledCourses.jsp");
-			rd.forward(request, response);
-		} else {
-			MongoClient mongo = (MongoClient) request.getServletContext()
-					.getAttribute("MONGO_CLIENT");
-			MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
-			Course c = new Course();
-			c.setId(id);
-			c.setName(name);
-			c.setLocation(location);
-			courseDAO.updateCourse(c);
-			System.out.println("Course enrolled successfully with id=" + id);
-			request.setAttribute("success", "Course enrolled successfully");
-			List<Course> courses = courseDAO.readAllCourse();
-			request.setAttribute("courses", courses);
- 			RequestDispatcher rd = getServletContext().getRequestDispatcher(
-					"/enrolledCourses.jsp");
-			rd.forward(request, response);
-		}
+		Course c = new Course();
+		c.setLocation(location);
+		c.setName(name);
+		//c.setId(id);
+		MongoClient mongo = (MongoClient) request.getServletContext()
+				.getAttribute("MONGO_CLIENT");
+		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
+		courseDAO.createEnrolledCourse(c);
+		System.out.println("Course Added Successfully with id="+c.getId());
+		request.setAttribute("success", "Course Added Successfully");
+		List<Course> courses = courseDAO.readAllEnrolledCourse();
+		request.setAttribute("courses", courses);
+
+		RequestDispatcher rd = getServletContext().getRequestDispatcher(
+				"/courses.jsp");
+		rd.forward(request, response);
 	}
  }

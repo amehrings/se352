@@ -7,8 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
- import edu.depaul.cdm.se.campusconnect.MongoDBCourseDAO;
-import edu.depaul.cdm.se.campusconnect.Course;
+
+import edu.depaul.cdm.se.courses.Course;
+import edu.depaul.cdm.se.courses.MongoDBCourseDAO;
+
 import com.mongodb.MongoClient;
  @WebServlet("/editCourse")
 public class EditCoursesServlet extends HttpServlet {
@@ -41,9 +43,15 @@ public class EditCoursesServlet extends HttpServlet {
 		}
  		String name = request.getParameter("name");
 		String location = request.getParameter("location");
+		String description = request.getParameter("description");
+		String professor = request.getParameter("professor");
+		String times = request.getParameter("times");
  		if ((name == null || name.equals(""))
-				|| (location == null || location.equals(""))) {
-			request.setAttribute("error", "Name and location can't be empty");
+				|| (location == null || location.equals(""))
+				|| (description == null || description.equals(""))
+				|| (professor == null || professor.equals(""))
+				|| (times == null || times.equals(""))) {
+			request.setAttribute("error", "Fields can't be empty");
 			MongoClient mongo = (MongoClient) request.getServletContext()
 					.getAttribute("MONGO_CLIENT");
 			MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
@@ -51,6 +59,9 @@ public class EditCoursesServlet extends HttpServlet {
 			c.setId(id);
 			c.setName(name);
 			c.setLocation(location);
+			c.setDescription(description);
+			c.setTimes(times);
+			c.setProfessor(professor);
 			request.setAttribute("course", c);
 			List<Course> courses = courseDAO.readAllCourse();
 			request.setAttribute("courses", courses);
@@ -65,6 +76,9 @@ public class EditCoursesServlet extends HttpServlet {
 			c.setId(id);
 			c.setName(name);
 			c.setLocation(location);
+			c.setDescription(description);
+			c.setTimes(times);
+			c.setProfessor(professor);
 			courseDAO.updateCourse(c);
 			System.out.println("Course edited successfully with id=" + id);
 			request.setAttribute("success", "Course edited successfully");

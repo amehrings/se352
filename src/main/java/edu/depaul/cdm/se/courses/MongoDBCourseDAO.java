@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se.campusconnect;
+package edu.depaul.cdm.se.courses;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,8 +50,6 @@ public class MongoDBCourseDAO {
 				.append("_id", new ObjectId(c.getId())).get();
 		this.col.update(query, CourseConverter.toDBObject(c));
 	}
- 	
- 	
  	
  	public List<Course> readAllEnrolledCourse() {
 		List<Course> data = new ArrayList<Course>();

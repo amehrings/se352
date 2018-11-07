@@ -1,12 +1,13 @@
-package edu.depaul.cdm.se.campusconnect;
+package edu.depaul.cdm.se.courses;
 
 import org.bson.Document;
-import edu.depaul.cdm.se.campusconnect.ICourse;
+
 import com.mongodb.Block;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+
 import java.util.List;
 import java.util.ArrayList;
 

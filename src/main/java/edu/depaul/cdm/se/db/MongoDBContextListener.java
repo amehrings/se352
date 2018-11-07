@@ -1,4 +1,4 @@
-package edu.depaul.cdm.se.campusconnect;
+package edu.depaul.cdm.se.db;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;

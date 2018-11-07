@@ -7,8 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
- import edu.depaul.cdm.se.campusconnect.MongoDBCourseDAO;
-import edu.depaul.cdm.se.campusconnect.Course;
+
+import edu.depaul.cdm.se.courses.Course;
+import edu.depaul.cdm.se.courses.MongoDBCourseDAO;
+
 import com.mongodb.MongoClient;
  @WebServlet("/droppedCourses")
 public class DroppedCoursesServlet extends HttpServlet {

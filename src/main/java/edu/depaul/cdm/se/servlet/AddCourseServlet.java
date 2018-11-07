@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.depaul.cdm.se.campusconnect.MongoDBCourseDAO;
-import edu.depaul.cdm.se.campusconnect.Course;
+import edu.depaul.cdm.se.courses.Course;
+import edu.depaul.cdm.se.courses.MongoDBCourseDAO;
+
 import com.mongodb.MongoClient;
 
 @WebServlet("/addCourse")
@@ -24,8 +25,14 @@ public class AddCourseServlet extends HttpServlet {
 		//String id = request.getParameter("id");
 		String name = request.getParameter("name");
 		String location = request.getParameter("location");
+		String description = request.getParameter("description");
+		String professor = request.getParameter("professor");
+		String times = request.getParameter("times");
 		if ((name == null || name.equals(""))
-				|| (location == null || location.equals(""))) {
+				|| (location == null || location.equals(""))
+				|| (description == null || description.equals(""))
+				|| (professor == null || professor.equals(""))
+				|| (times == null || times.equals(""))) {
 			request.setAttribute("error", "Mandatory Parameters Missing");
 			RequestDispatcher rd = getServletContext().getRequestDispatcher(
 					"/courses.jsp");
@@ -34,7 +41,9 @@ public class AddCourseServlet extends HttpServlet {
 			Course c = new Course();
 			c.setLocation(location);
 			c.setName(name);
-			//c.setId(id);
+			c.setDescription(description);
+			c.setTimes(times);
+			c.setProfessor(professor);
 			MongoClient mongo = (MongoClient) request.getServletContext()
 					.getAttribute("MONGO_CLIENT");
 			MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);

@@ -1,7 +1,8 @@
 package edu.depaul.cdm.se.servlet;
 
-import edu.depaul.cdm.se.campusconnect.ICourse;
-import edu.depaul.cdm.se.campusconnect.CourseService;
+import edu.depaul.cdm.se.courses.CourseService;
+import edu.depaul.cdm.se.courses.ICourse;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 

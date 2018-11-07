@@ -2,53 +2,88 @@ package edu.depaul.cdm.se.users;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import static java.util.Calendar.DATE;
-import static java.util.Calendar.MONTH;
-import static java.util.Calendar.YEAR;
+
 
 @Document(collection = "user")
-public class User {
-   @Id
-   private String userId;
-   private String name;
-   private long age;
-   private List<String> courses;
-   private Date dateOfBirth;
+public class User implements IUser {
    
-   public User() {}
+	@Id
+	private String userId;
+	private String name;
+	private List<String> currentlyEnrolledCourses;
+	private List<String> enrolledCourses;
+	private List<String> courseCart;
+	private boolean readyToEnroll;
    
-   public User(String name, List<String> c, Date dateOfBirth) {
-       this.name = name;
-       this.courses = c;
-       this.dateOfBirth = dateOfBirth;
-       this.age = getDiffYears(dateOfBirth, new Date());
-   }
+	public User() {}
+
+	public User(String userId) {}
    
-   // standard getters and setters
-   private int getDiffYears(Date first, Date last) {
-       Calendar a = getCalendar(first);
-       Calendar b = getCalendar(last);
-       int diff = b.get(YEAR) - a.get(YEAR);
-       if (a.get(MONTH) > b.get(MONTH) ||
-               (a.get(MONTH) == b.get(MONTH) && a.get(DATE) > b.get(DATE))) {
-           diff--;
-       }
-       return diff;
-   }
    
-   private Calendar getCalendar(Date date) {
-       Calendar cal = Calendar.getInstance(Locale.US);
-       cal.setTime(date);
-       return cal;
-   }
-   
-   @Override
-   public String toString() {
-       return String.format("User{userId='%s', name='%s', age=%d, dateOfBirth=%s}\n",
-               userId, name, age, dateOfBirth);
-   }
+	@Override
+	public String toString() {
+		return String.format("User{userId='%s', name='%s'}\n",
+               userId, name);
+	}
+
+	@Override
+	public String getId() {
+		return userId;
+	}
+	
+	@Override
+	public void setId(String id) {
+		this.userId = id;
+	}
+	
+	@Override
+	public String getName() {
+		return name;
+	}
+	
+	@Override
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	@Override
+	public List<String> getCurrentlyEnrolledCourses() {
+		return currentlyEnrolledCourses;
+	}
+	
+	@Override
+	public void setCurrentlyEnrolledCourses(List<String> currentlyEnrolled) {
+		this.currentlyEnrolledCourses = currentlyEnrolled;
+	}
+	
+	@Override
+	public List<String> getEnrolledCourses() {
+		return enrolledCourses;
+	}
+	
+	@Override
+	public void setEnrolledCourses(List<String> enrolledCourses) {
+		this.enrolledCourses = enrolledCourses;
+	}
+	
+	@Override
+	public List<String> getCourseCart() {
+		return courseCart;
+	}
+	
+	@Override
+	public void setCourseCart(List<String> courseCart) {
+		this.courseCart = courseCart;
+	}
+	
+	@Override
+	public boolean getReadyToEnroll() {
+		return readyToEnroll;
+	}
+	
+	@Override
+	public void setReadyToEnroll(boolean ready) {
+		this.readyToEnroll = ready;
+	}
 }

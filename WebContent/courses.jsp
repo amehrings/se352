@@ -7,9 +7,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Manage Courses</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+<style>
+	body {
+		padding: 50px !important;
+	}
+</style>
 </head>
 <body>
+	
+	<c:url value="/addCourse" var="addURL"></c:url>
+	<c:url value="/editCourse" var="editURL"></c:url>
+	<c:url value="courseScheduler" var="schedulerURL"></c:url>
+
+	<div class="ui divider"></div>
+	<form action="enrollCourse">
+		<button type="submit" class="ui button primary">Course Enroll</button>
+		<button type="submit" formaction="getCourses" class="ui button secondary">View Course Scheduler</button>
+	</form>
+	<!-- <form action="getCourses">
+		<button type="submit" formaction="getCourses" class="ui button secondary">View Course Scheduler</button>
+	</form> -->
+	<div class="ui divider"></div>
 	<%-- Course Add/Edit logic --%>
 	<c:if test="${requestScope.error ne null}">
 		<strong style="color: red;"><c:out
@@ -19,43 +38,44 @@
 		<strong style="color: green;"><c:out
 				value="${requestScope.success}"></c:out></strong>
 	</c:if>
-	<c:url value="/addCourse" var="addURL"></c:url>
-	<c:url value="/editCourse" var="editURL"></c:url>
-	<c:url value="courseScheduler" var="schedulerURL"></c:url>
-
 	<%-- Edit Request --%>
 	<c:if test="${requestScope.course ne null}">
-		<form action='<c:out value="${editURL}"></c:out>' method="post">
-			Course ID: <input type="text" value="${requestScope.course.id}"
-				readonly="readonly" name="id">
-				<br> Course Name: <input
-				type="text" value="${requestScope.course.name}" name="name">
-				<br> Course Location: <input
-				type="text" value="${requestScope.course.location}" name="location">
-				<br> <input type="submit" value="Edit Course">
+		<form action='<c:out value="${editURL}"></c:out>' method="post" class="ui form">
+			<div class="field"><label>Course ID: </label><input type="text" value="${requestScope.course.id}" readonly="readonly" name="id"></div>
+				<div class="two fields"><div class="field"><label>Course Name: </label><input type="text" value="${requestScope.course.name}" name="name" maxlength="7"></div>
+				<div class="field"><label>Course Location: </label><input type="text" value="${requestScope.course.location}" name="location" maxlength="15"></div></div>
+				<div class="field"><label>Course Description: </label><input type="text" value="${requestScope.course.description}" name="description" maxlength="30"></div>
+				<div class="two fields"><div class="field"><label>Course Professor: </label><input type="text" value="${requestScope.course.professor}" name="professor" maxlength="30"></div>
+				<div class="field"><label>Course Times: </label><input type="text" value="${requestScope.course.times}" name="times" maxlength="10"></div></div>
+				<button type="submit" class="ui button">Edit Course</button>
 		</form>
 	</c:if>
 
 	<%-- Add Request --%>
 	<c:if test="${requestScope.course eq null}">
-		<form action='<c:out value="${addURL}"></c:out>' method="post">
-			Course Name: <input type="text" name="name"> 
-			<br> Course Location: <input type="text" name="location">
-			<br> <input type="submit" value="Add Course">
+		<form action='<c:out value="${addURL}"></c:out>' method="post" class="ui form">
+			<div class="two fields"><div class="field"><label>Course Name: </label><input type="text" name="name" maxlength="7"></div> 
+			<div class="field"><label>Course Location: </label><input type="text" name="location" maxlength="15"></div></div>
+			<div class="field"><label>Course Description: </label><input type="text" name="description" maxlength="30"></div>
+			<div class="two fields"><div class="field"><label>Course Professor: </label><input type="text" name="professor" maxlength="30"></div>
+			<div class="field"><label>Course Times: </label><input type="text" name="times" maxlength="10"></div></div>
+			<button type="submit" class="ui button">Add Course</button>
 		</form>
 	</c:if>	
 	
-	<form action="getCourses">
-		<input type="submit" value="View Course Scheduler"/>
-	</form>
+	
 	<br> 
 	<%-- Courses List Logic --%>
 	<c:if test="${not empty requestScope.courses}">
-		<table>
+		<table class="ui celled table">
 			<tbody>
 				<tr>
 					<th>ID</th>
 					<th>Name</th>
+					<th>Description</th>
+					<th>Professor</th>
+					<th>Location</th>
+					<th>Times</th>
 					<th>Edit</th>
 					<th>Delete</th>
 				</tr>
@@ -68,7 +88,11 @@
 					</c:url>
 					<tr>
 						<td><c:out value="${course.id}"></c:out></td>
-						<td><c:out value="${person.location}"></c:out></td>
+						<td><c:out value="${course.name}"></c:out></td>
+						<td><c:out value="${course.description}"></c:out></td>
+						<td><c:out value="${course.professor}"></c:out></td>
+						<td><c:out value="${course.location}"></c:out></td>
+						<td><c:out value="${course.times}"></c:out></td>
 						<td><a
 							href='<c:out value="${editURL}" escapeXml="true"></c:out>'>Edit</a></td>
 						<td><a
@@ -94,9 +118,11 @@
 		</form>
 	</c:if> --%>
 	
-		<a href="enrollCourse">Course Enroll</a>
+		<!-- <a href="enrollCourse">Course Enroll</a> -->
+		
 
 <%-- 	<a href="<c:url value="enrollCourse.jsp" var="enrollURL"></c:url>"><button>Course Enroll</button></a> --%>
 	
 </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>

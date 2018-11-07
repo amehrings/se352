@@ -8,6 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Manage Courses</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.min.css">
+<style>
+	body {
+		padding: 50px !important;
+	}
+</style>
 </head>
 <body>
 	<%-- Course Add/Edit logic --%>

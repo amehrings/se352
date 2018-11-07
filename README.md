@@ -20,9 +20,8 @@ Aaron Mehrings, Artur Oganezov, & Megan Pecho
 
 
 
-![Successful build](./milestone4_successfulBuild.PNG)
-![Running server](./milestone4_runningProject.PNG)
-(They aren't showing, but they are in the files)
+![Successful build](/milestone4_successfulBuild.png)
+![Running server](/milestone4_runningProject.png)
 
 ---
 

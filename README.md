@@ -6,19 +6,23 @@ Aaron Mehrings, Artur Oganezov, & Megan Pecho
 
 ###### Sequence of major functionality from user interface to persistence
 
+We currently are not differentiating between students and admins.
 
+Every user can currently add a new course to the list. Users are yet to be defined.
+
+The current user can then view all the courses, enroll in courses, and drop courses, and view the courses in each of those states. We save all of these states and each user sees the same thing. We have not implemented separate users (at least as of yet). 
 
 ###### Lessons learned
 
-
+For this milestone, we have set up Tomcat within Eclipse to make our deployment cycle easier. We have also extended upon our knowledge of servlets and connecting them to the jsp pages. 
 
 ###### Decision log and consequence of the decision
 
-
+In this milestone, we decided to use a css library to style our site rather than rely on our mockups and do the styles ourselves. We decided to use Semantic-UI as it is pretty and easy to use, and it gave us the feel we were looking for, though we did look at Bootstrap and Material as options. Those were too light-weight for us.
 
 ###### Discussion about the lessons learned
 
-
+If we had a bit more time and decided this sooner, we would have preferred to use a library like React or framework like Angular to make the front-end easier to deal with and have the ability to dynamically show content out of the box, ie. not have to reload the page each time an action is completed.
 
 ![Successful build](/milestone4_successfulBuild.png)
 ![Running server](/milestone4_runningProject.png)

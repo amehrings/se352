@@ -22,8 +22,10 @@
 
 	<div class="ui divider"></div>
 	<form action="enrollCourse">
-		<button type="submit" class="ui button primary">Course Enroll</button>
+		<button type="submit" class="ui button primary">Enroll in Courses</button>
+		<button type="submit" formaction="search" class="ui button primary">Search for Courses</button>
 		<button type="submit" formaction="getCourses" class="ui button secondary">View Course Scheduler</button>
+		
 	</form>
 	<!-- <form action="getCourses">
 		<button type="submit" formaction="getCourses" class="ui button secondary">View Course Scheduler</button>

@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Manage Courses</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <style>
 	body {
 		padding: 50px !important;
@@ -39,13 +39,16 @@
 
 	<%-- Courses List Logic --%>
 	<c:if test="${not empty requestScope.courses}">
-		<table>
-			<tbody>
+		<table class="ui unstackable table">
+			<thead>
 				<tr>
 <!-- 					<th>ID</th> -->
 					<th>Name</th>
 					<th>Enroll</th>
+					<th></th>
 				</tr>
+			</thead>
+			<tbody>
 				<c:forEach items="${requestScope.courses}" var="course">
 					<c:url value="/enrollCourse" var="enrollURL">
 						<c:param name="id" value="${course.id}"></c:param>
@@ -60,9 +63,7 @@
 						<td><c:out value="${course.name}"></c:out></td>
 						<td><c:out value="${person.location}"></c:out></td>
 						<td>
-							<a
-								href='<c:out value="${enrolledURL}" escapeXml="true"></c:out>'>Enroll
-							</a>
+							<a href='<c:out value="${enrolledURL}" escapeXml="true"></c:out>'>Enroll</a>
 						</td>
 					</tr>
 				</c:forEach>
@@ -85,9 +86,9 @@
 		</form>
 	</c:if> --%>
 	
-	
-	<a href="enrolledCourses">View Enrolled Courses</a>
-	<a href="courses.jsp">Return to Courses</a>
-	
+	<a href="enrolledCourses"><button class="ui button primary">View Enrolled Courses</button></a>
+	<a href="courses.jsp"><button class="ui button secondary">Return to Courses</button></a>
+
 </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>

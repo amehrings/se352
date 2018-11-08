@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Enrolled Courses</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <style>
 	body {
 		padding: 50px !important;
@@ -32,13 +32,16 @@
 	<%-- Courses List Logic --%>
 	<h1>ENROLLED COURSES</h1>
 	<c:if test="${not empty requestScope.courses}">
-		<table>
-			<tbody>
+		<table class="ui celled table">
+			<thead>
+			
 				<tr>
 					<th></th>
 					<th>Name</th>
 					<th>Location</th>
 				</tr>
+			</thead>
+			<tbody>
 <!-- 				<form action="droppedCourses"> -->
 <!-- 	<form action="swapCourse"> -->
 
@@ -61,10 +64,10 @@
 				</c:forEach>
 				<tr>
 					<td>
-						<input type="submit" value="Swap"/>
+						<button type="submit" value="Swap" class="ui button primary">Swap</button>
 					</td>
 					<td>
-						<input type="submit" value="Drop"/>
+						<button type="submit" value="Drop" class="ui button primary">Drop</button>
 					</td>
 				</tr>				
 			</tbody>
@@ -78,13 +81,15 @@
 	<h1>DROPPED COURSES</h1>
 	<%-- Courses List Logic --%>
 <%-- 	<c:if test="${droppedURL}"> --%>
-		<table>
-			<tbody>
+		<table class="ui celled table">
+			<thead>
 				<tr>
 					<th></th>
 					<th>Name</th>
 					<th>Location</th>
 				</tr>
+				</thead>
+				<tbody>
 				<c:forEach items="${requestScope.droppedCourses}" var="droppedCourses">
 					<c:url value="/droppedCourses" var="droppedURL">
 						<c:param name="id" value="${droppedCourses.id}"></c:param>
@@ -104,8 +109,9 @@
 	<br/>
 	
 	
-	<a href="courses.jsp">Return to Courses</a>
-	<a href="droppedCourses">Dropped</a>
+	<a href="courses.jsp"><button class="ui button primary">Return to Courses</button></a>
+	<a href="droppedCourses"><button class="ui button secondary">View Dropped Courses</button></a>
 	
 </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>

@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Manage Courses</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <style>
 	body {
 		padding: 50px !important;
@@ -19,14 +19,16 @@
 	<%-- Courses List Logic --%>
 	<h3>Course Cart Courses </h3>
 	<c:if test="${not empty requestScope.courses}">
-		<table>
-			<tbody>
+		<table class="ui striped table">
+			<thead>
 				<tr>
 					<th>ID</th>
 					<th>Name</th>
 					<th>Edit</th>
 					<th>Delete</th>
 				</tr>
+			</thead>
+			<tbody>
 				<c:forEach items="${requestScope.courses}" var="course">
 					<c:url value="/editCourse" var="editURL">
 						<c:param name="id" value="${course.id}"></c:param>
@@ -47,7 +49,7 @@
 			</tbody>
 		</table>
 	</c:if>
-	<hr>
+	<div class="ui divider"></div>
 	<h3>Actions:</h3>
 	<p><a href="enrollCourse">Search for Courses</a></p>
 	<p><a href="enrollCourse">View Course Cart Courses</a></p>
@@ -86,7 +88,7 @@
 				</tbody>
 			</table>
 		</c:if>
-		<hr>
+		<div class="ui divider"></div>
 		<h3>Actions:</h3>
 		<p><a href="enrollCourse">Search for Courses</a></p>
 		<p><a href="enrollCourse">View Course Cart Courses</a></p>
@@ -94,3 +96,4 @@
 	</div>
 </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>

@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Enrolled Courses</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.10/angular-material.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <style>
 	body {
 		padding: 50px !important;
@@ -29,13 +29,15 @@
 
 	<%-- Courses List Logic --%>
 	<c:if test="${not empty requestScope.droppedCourses}">
-		<table>
-			<tbody>
+		<table class="ui celled table">
+			<thead>
 				<tr>
 					<th></th>
 					<th>Name</th>
 					<th>Location</th>
 				</tr>
+			</thead>
+			<tbody>
 				<c:forEach items="${requestScope.droppedCourses}" var="droppedCourses">
 					<c:url value="/droppedCourses" var="droppedURL">
 						<c:param name="id" value="${droppedCourses.id}"></c:param>
@@ -56,7 +58,8 @@
 	<br/>
 	<br/>
 
-	<a href="courses.jsp">Return to Courses</a>
+	<a href="courses.jsp"><button class="ui button secondary">Return to Courses</button></a>
 	
 </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>

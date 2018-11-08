@@ -69,8 +69,9 @@
 	<br> 
 	<%-- Courses List Logic --%>
 	<c:if test="${not empty requestScope.courses}">
-		<table class="ui celled table">
-			<tbody>
+		<table class="ui striped table">
+			<thead>
+			
 				<tr>
 					<th>ID</th>
 					<th>Name</th>
@@ -81,6 +82,8 @@
 					<th>Edit</th>
 					<th>Delete</th>
 				</tr>
+			</thead>
+			<tbody>
 				<c:forEach items="${requestScope.courses}" var="course">
 					<c:url value="/editCourse" var="editURL">
 						<c:param name="id" value="${course.id}"></c:param>

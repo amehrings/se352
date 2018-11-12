@@ -12,8 +12,8 @@ import edu.depaul.cdm.se.courses.Course;
 import edu.depaul.cdm.se.courses.MongoDBCourseDAO;
 
 import com.mongodb.MongoClient;
- @WebServlet("/droppedCourses")
-public class DroppedCoursesServlet extends HttpServlet {
+ @WebServlet("/swappedNewCourses")
+public class SwappedNewCoursesServlet extends HttpServlet {
  	private static final long serialVersionUID = -6554920927964049383L;
  	
  	protected void doGet(HttpServletRequest request,
@@ -25,22 +25,19 @@ public class DroppedCoursesServlet extends HttpServlet {
 				.getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
 		if(id != null) {
-			Course c = new Course();
-			c.setId(id);
-			c.setLocation(location);
-			c.setName(name);
-			courseDAO.dropCourse(c);
-			courseDAO.deleteEnrolledCourse(c);
+			Course c2 = new Course();
+			c2.setId(id);
+			c2.setLocation(location);
+			c2.setName(name);
+			
+			courseDAO.swapCourseFromCourseCart(SwappedCoursesServlet.c1, c2);
 		}
 		
-//		Course c = new Course();
-//		c.setId(id);
-//		c = courseDAO.readCourse(c);
-//		request.setAttribute("course", c);
-//		List<Course> droppedCourses = courseDAO.readAllDroppedCourse();
-//		request.setAttribute("droppedCourses", droppedCourses);
+
+//		List<Course> swappedNewCourses = courseDAO.readAllCourse();
+//		request.setAttribute("swappedNewCourses", swappedNewCourses);
 // 		RequestDispatcher rd = getServletContext().getRequestDispatcher(
-//				"/droppedCourses.jsp");
+//				"/enrolledCourses");
 //		rd.forward(request, response);
 		response.sendRedirect("enrolledCourses");
 	}

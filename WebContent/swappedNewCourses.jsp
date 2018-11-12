@@ -24,41 +24,15 @@
 		<strong style="color: green;"><c:out
 				value="${requestScope.success}"></c:out></strong>
 	</c:if>
-	<c:url value="/droppedCourses" var="droppedURL"></c:url>
+	<c:url value="/swappedNewCourses" var="swappedNewCoursesURL"></c:url>
 
-
-	<%-- Courses List Logic --%>
-	<c:if test="${not empty requestScope.droppedCourses}">
-		<table class="ui celled table">
-			<thead>
-				<tr>
-					<th></th>
-					<th>Name</th>
-					<th>Location</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${requestScope.droppedCourses}" var="droppedCourses">
-					<c:url value="/droppedCourses" var="droppedURL">
-						<c:param name="id" value="${droppedCourses.id}"></c:param>
-					</c:url>
-					<tr>
-						<td><input type="checkbox" action="<c:out value="${droppedCourses.id}"></c:out>"/></td>
-						<td><c:out value="${droppedCourses.name}"></c:out></td>
-						<td><c:out value="${droppedCourses.location}"></c:out></td>
-<!-- 						<td><a -->
-<%-- 							href='<c:out value="${deleteURL}" escapeXml="true"></c:out>'>Delete</a></td> --%>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</c:if>
-
+	<h2>Courses Swapped Successfully</h2>
+	
 	<br/>
 	<br/>
 	<br/>
 
-	<a href="courses.jsp"><button class="ui button secondary">Return to Courses</button></a>
+	<a href="enrolledCourses"><button class="ui button secondary">Return to Enrolled Courses</button></a>
 	
 </body>
 </html>

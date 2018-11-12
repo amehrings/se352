@@ -36,7 +36,7 @@
 			<thead>
 			
 				<tr>
-					<th></th>
+<!-- 					<th></th> -->
 					<th>Name</th>
 					<th>Location</th>
 				</tr>
@@ -54,22 +54,32 @@
 						<c:param name="name" value="${course.name}"></c:param>
 						<c:param name="location" value="${course.location}"></c:param>
 					</c:url>
+					<c:url value="/swappedCourses" var="swappedURL">
+						<c:param name="id" value="${course.id}"></c:param>
+						<c:param name="name" value="${course.name}"></c:param>
+						<c:param name="location" value="${course.location}"></c:param>
+					</c:url>
 					<tr>
 <%-- 						<td><input type="checkbox" action="<c:out value="${droppedURL}" escapeXml="true"></c:out>"/></td> --%>
-						<td><a
-							href='<c:out value="${droppedURL}" escapeXml="true"></c:out>'>Drop</a></td>
 						<td><c:out value="${course.name}"></c:out></td>
 						<td><c:out value="${course.location}"></c:out></td>
+						<td><a
+							href='<c:out value="${droppedURL}" escapeXml="true"></c:out>'>Drop</a>
+						</td>
+						<td>
+							<a
+							href='<c:out value="${swappedURL}" escapeXml="true"></c:out>'>Swap</a>
+						</td>
  					</tr>
 				</c:forEach>
-				<tr>
-					<td>
-						<button type="submit" value="Swap" class="ui button primary">Swap</button>
-					</td>
-					<td>
-						<button type="submit" value="Drop" class="ui button primary">Drop</button>
-					</td>
-				</tr>				
+<!-- 				<tr> -->
+<!-- 					<td> -->
+<!-- 						<button type="submit" value="Swap" class="ui button primary">Swap</button> -->
+<!-- 					</td> -->
+<!-- 					<td> -->
+<!-- 						<button type="submit" value="Drop" class="ui button primary">Drop</button> -->
+<!-- 					</td> -->
+<!-- 				</tr>				 -->
 			</tbody>
 		</table>
 	</c:if>
@@ -78,39 +88,38 @@
 	<br/>
 	
 
-	<h1>DROPPED COURSES</h1>
-	<%-- Courses List Logic --%>
+<!-- 	<h1>DROPPED COURSES</h1> -->
 <%-- 	<c:if test="${droppedURL}"> --%>
-		<table class="ui celled table">
-			<thead>
-				<tr>
-					<th></th>
-					<th>Name</th>
-					<th>Location</th>
-				</tr>
-				</thead>
-				<tbody>
-				<c:forEach items="${requestScope.droppedCourses}" var="droppedCourses">
-					<c:url value="/droppedCourses" var="droppedURL">
-						<c:param name="id" value="${droppedCourses.id}"></c:param>
-					</c:url>
-					<tr>
-						<td><input type="checkbox" action="<c:out value="${droppedCourses.id}"></c:out>"/></td>
-						<td><c:out value="${droppedCourses.name}"></c:out></td>
-						<td><c:out value="${droppedCourses.location}"></c:out></td>
+<!-- 		<table class="ui celled table"> -->
+<!-- 			<thead> -->
+<!-- 				<tr> -->
+<!-- 					<th></th> -->
+<!-- 					<th>Name</th> -->
+<!-- 					<th>Location</th> -->
+<!-- 				</tr> -->
+<!-- 				</thead> -->
+<!-- 				<tbody> -->
+<%-- 				<c:forEach items="${requestScope.droppedCourses}" var="droppedCourses"> --%>
+<%-- 					<c:url value="/droppedCourses" var="droppedURL"> --%>
+<%-- 						<c:param name="id" value="${droppedCourses.id}"></c:param> --%>
+<%-- 					</c:url> --%>
+<!-- 					<tr> -->
+<%-- 						<td><input type="checkbox" action="<c:out value="${droppedCourses.id}"></c:out>"/></td> --%>
+<%-- 						<td><c:out value="${droppedCourses.name}"></c:out></td> --%>
+<%-- 						<td><c:out value="${droppedCourses.location}"></c:out></td> --%>
 <!-- 						<td><a -->
 <%-- 							href='<c:out value="${deleteURL}" escapeXml="true"></c:out>'>Delete</a></td> --%>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+<!-- 					</tr> -->
+<%-- 				</c:forEach> --%>
+<!-- 			</tbody> -->
+<!-- 		</table> -->
 <%-- 	</c:if> --%>
 
 	<br/>
 	
 	
 	<a href="courses.jsp"><button class="ui button primary">Return to Courses</button></a>
-	<a href="droppedCourses"><button class="ui button secondary">View Dropped Courses</button></a>
+	<a href="droppedCoursesList"><button class="ui button secondary">View Dropped Courses</button></a>
 	
 </body>
 </html>

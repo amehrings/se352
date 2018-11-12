@@ -109,9 +109,6 @@ public class MongoDBCourseDAO {
  	public void dropCourse(Course c) {
  		DBObject doc = CourseConverter.toDBObject(c);
 		this.droppedCol.insert(doc);
-//		ObjectId id = (ObjectId) doc.get("_id");
-//		c.setId(id.toString());
-//		c.setName(name);
 	}
  	
  	public void swapCourseFromEnrolled(Course c) {

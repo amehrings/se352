@@ -28,7 +28,7 @@
 	<c:url value="/swappedNewCourses" var="swappedNewCourseURL"></c:url>
 	
 
-
+	<h1>SWAP COURSE</h1>
 	<%-- Courses List Logic --%>
 	<c:if test="${not empty requestScope.swappedCourses}">
 		<table class="ui celled table">
@@ -45,16 +45,21 @@
 						<c:param name="id" value="${courses.id}"></c:param>
 						<c:param name="name" value="${courses.name}"></c:param>
 						<c:param name="location" value="${courses.location}"></c:param>
+						<c:param name="professor" value="${courses.professor}"></c:param>
+						<c:param name="times" value="${courses.times}"></c:param>
 					</c:url>
 					<c:url value="/swappedNewCourses" var="swappedNewCourseURL">
 						<c:param name="id" value="${courses.id}"></c:param>
 						<c:param name="name" value="${courses.name}"></c:param>
 						<c:param name="location" value="${courses.location}"></c:param>
+						<c:param name="professor" value="${courses.professor}"></c:param>
+						<c:param name="times" value="${courses.times}"></c:param>
 					</c:url>
 					<tr>
-<%-- 						<td><input type="checkbox" action="<c:out value="${swappedCourses.id}"></c:out>"/></td> --%>
 						<td><c:out value="${courses.name}"></c:out></td>
 						<td><c:out value="${courses.location}"></c:out></td>
+						<td><c:out value="${courses.professor}"></c:out></td>
+						<td><c:out value="${courses.times}"></c:out></td>
 						<td><a
 							href='<c:out value="${swappedNewCourseURL}" escapeXml="true"></c:out>'>Swap</a>
 						</td>

@@ -21,6 +21,8 @@ public class SwappedNewCoursesServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
 		String location = request.getParameter("location");
+		String professor = request.getParameter("professor");
+		String times = request.getParameter("times");
 		MongoClient mongo = (MongoClient) request.getServletContext()
 				.getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
@@ -29,7 +31,8 @@ public class SwappedNewCoursesServlet extends HttpServlet {
 			c2.setId(id);
 			c2.setLocation(location);
 			c2.setName(name);
-			
+			c2.setProfessor(professor);
+			c2.setTimes(times);
 			courseDAO.swapCourseFromCourseCart(SwappedCoursesServlet.c1, c2);
 		}
 		

@@ -27,6 +27,7 @@
 	<c:url value="/droppedCoursesList" var="droppedListURL"></c:url>
 
 
+	<h1>DROPPED COURSES</h1>
 	<%-- Courses List Logic --%>
 	<c:if test="${not empty requestScope.droppedCoursesList}">
 		<table class="ui celled table">
@@ -34,6 +35,8 @@
 				<tr>
 					<th>Name</th>
 					<th>Location</th>
+					<th>Professor</th>
+					<th>Times</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -44,6 +47,8 @@
 					<tr>
 						<td><c:out value="${droppedCoursesList.name}"></c:out></td>
 						<td><c:out value="${droppedCoursesList.location}"></c:out></td>
+						<td><c:out value="${droppedCoursesList.professor}"></c:out></td>
+						<td><c:out value="${droppedCoursesList.times}"></c:out></td>
 <!-- 						<td><a -->
 <%-- 							href='<c:out value="${deleteURL}" escapeXml="true"></c:out>'>Delete</a></td> --%>
 					</tr>

@@ -36,9 +36,12 @@
 			<thead>
 			
 				<tr>
-<!-- 					<th></th> -->
 					<th>Name</th>
 					<th>Location</th>
+					<th>Professor</th>
+					<th>Time</th>
+					<th></th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -53,16 +56,22 @@
 						<c:param name="id" value="${course.id}"></c:param>
 						<c:param name="name" value="${course.name}"></c:param>
 						<c:param name="location" value="${course.location}"></c:param>
+						<c:param name="professor" value="${course.professor}"></c:param>
+						<c:param name="times" value="${course.times}"></c:param>
 					</c:url>
 					<c:url value="/swappedCourses" var="swappedURL">
 						<c:param name="id" value="${course.id}"></c:param>
 						<c:param name="name" value="${course.name}"></c:param>
 						<c:param name="location" value="${course.location}"></c:param>
+						<c:param name="professor" value="${course.professor}"></c:param>
+						<c:param name="times" value="${course.times}"></c:param>
 					</c:url>
 					<tr>
 <%-- 						<td><input type="checkbox" action="<c:out value="${droppedURL}" escapeXml="true"></c:out>"/></td> --%>
 						<td><c:out value="${course.name}"></c:out></td>
 						<td><c:out value="${course.location}"></c:out></td>
+						<td><c:out value="${course.professor}"></c:out></td>
+						<td><c:out value="${course.times}"></c:out></td>
 						<td><a
 							href='<c:out value="${droppedURL}" escapeXml="true"></c:out>'>Drop</a>
 						</td>
@@ -118,7 +127,7 @@
 	<br/>
 	
 	
-	<a href="courses.jsp"><button class="ui button primary">Return to Courses</button></a>
+	<a href="enrollCourse"><button class="ui button primary">Return to Course Cart</button></a>
 	<a href="droppedCoursesList"><button class="ui button secondary">View Dropped Courses</button></a>
 	
 </body>

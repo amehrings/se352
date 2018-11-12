@@ -21,6 +21,8 @@ public class DroppedCoursesServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
 		String location = request.getParameter("location");
+		String professor = request.getParameter("professor");
+		String times = request.getParameter("times");
 		MongoClient mongo = (MongoClient) request.getServletContext()
 				.getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
@@ -29,19 +31,12 @@ public class DroppedCoursesServlet extends HttpServlet {
 			c.setId(id);
 			c.setLocation(location);
 			c.setName(name);
+			c.setProfessor(professor);
+			c.setTimes(times);
 			courseDAO.dropCourse(c);
 			courseDAO.deleteEnrolledCourse(c);
 		}
 		
-//		Course c = new Course();
-//		c.setId(id);
-//		c = courseDAO.readCourse(c);
-//		request.setAttribute("course", c);
-//		List<Course> droppedCourses = courseDAO.readAllDroppedCourse();
-//		request.setAttribute("droppedCourses", droppedCourses);
-// 		RequestDispatcher rd = getServletContext().getRequestDispatcher(
-//				"/droppedCourses.jsp");
-//		rd.forward(request, response);
 		response.sendRedirect("enrolledCourses");
 	}
 // 	protected void doPost(HttpServletRequest request,

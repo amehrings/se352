@@ -27,16 +27,7 @@
 	<c:url value="/enrollCourse" var="enrollURL"></c:url>
 	<c:url value="/enrolledCourses" var="enrolledURL"></c:url>
 	
-
- 	<%-- Add Request --%>
-<%-- 	<c:if test="${requestScope.course eq null}"> --%>
-<%-- 		<input action='<c:out value="${enrollURL}"></c:out>' method="post"> --%>
-<!-- 			Course Name: <input type="text" name="name">  -->
-<!-- 			<br> Course Location: <input type="text" name="location"> -->
-<!-- 			<br> <input type="submit" value="Add Course"> -->
-<!-- 		</> -->
-<%-- 	</c:if>	 --%>
-
+	<h1>COURSE CART</h1>
 	<%-- Courses List Logic --%>
 	<c:if test="${not empty requestScope.courses}">
 		<table class="ui unstackable table">
@@ -44,7 +35,9 @@
 				<tr>
 <!-- 					<th>ID</th> -->
 					<th>Name</th>
-					<th>Enroll</th>
+					<th>Location</th>
+					<th>Professor</th>
+					<th>Time</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -57,11 +50,14 @@
 						<c:param name="id" value="${course.id}"></c:param>
 						<c:param name="name" value="${course.name}"></c:param>
 						<c:param name="location" value="${course.location}"></c:param>
+						<c:param name="professor" value="${course.professor}"></c:param>
+						<c:param name="times" value="${course.times}"></c:param>
 					</c:url>
 					<tr>
-						<td><input type="checkbox" action="<c:out value="${course.id}"></c:out>"/></td>
 						<td><c:out value="${course.name}"></c:out></td>
-						<td><c:out value="${person.location}"></c:out></td>
+						<td><c:out value="${course.location}"></c:out></td>
+						<td><c:out value="${course.professor}"></c:out></td>
+						<td><c:out value="${course.times}"></c:out></td>
 						<td>
 							<a href='<c:out value="${enrolledURL}" escapeXml="true"></c:out>'>Enroll</a>
 						</td>

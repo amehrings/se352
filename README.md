@@ -49,13 +49,13 @@ This version of campus connect will have a simple way to register for classes, s
 ## Requirements
 #### Use Cases
   - [ ] Searching for classes to take.
-  - [ ] Adding classes to your course cart.
+  - [x] Adding classes to your course cart.
   - [ ] Removing classes from your course cart.
   - [x] Enrolling in classes.
   - [x] Dropping classes.
-  - [ ] Swapping a class you’re registered in for a class in your course cart.
+  - [x] Swapping a class you’re registered in for a class in your course cart.
   - [ ] Seeing a calendar view of your classes.
-  - [ ] Seeing list of dropped classes.
+  - [x] Seeing list of dropped classes.
   - [ ] Calendar view of course cart classes.
   - [ ] Create classes as an administrator
   - [ ] Delete classes as admin.

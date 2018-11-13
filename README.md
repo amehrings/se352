@@ -50,17 +50,17 @@ This version of campus connect will have a simple way to register for classes, s
 #### Use Cases
   - [ ] Searching for classes to take.
   - [x] Adding classes to your course cart.
-  - [ ] Removing classes from your course cart.
+  - [x] Removing classes from your course cart.
   - [x] Enrolling in classes.
   - [x] Dropping classes.
   - [x] Swapping a class you’re registered in for a class in your course cart.
   - [x] Seeing list of dropped classes.
-  - [ ] Faculty and Admin can view student's classes
   - [x] Create classes as an administrator
   - [x] Delete classes as admin.
   - [x] Edit Classes as admin.
-  - [ ] Remove students from enrolled classes
-  - [ ] View enrolled students
+  - [ ] Schedule Advising meeting and see available times
+  - [ ] Cancel Advising meeting after scheduling 
+  - [ ] Edit Advising meeting and add reason for scheduling
 
 
 ## Description of Problem
@@ -74,11 +74,11 @@ The requirements were to have 3 major functionalities, use a database, and Javas
 
 |Megan|Aaron|Artur|
 | ------------- | ------------- | ------------- |
-|Searching for classes to take.|Enrolling in classes.|Create classes as an administrator.|
-|Adding classes to your course cart.|Dropping classes.|Delete classes as admin.|
-|Removing classes from your course cart.|Swapping a class you’re registered in for a class in your course cart.|Edit Classes as admin.|
-|Seeing list of dropped classes.|Remove students from enrolled classes.|
-|Faculty and Admin can view student's classes||View enrolled students.|
+|Create classes as an administrator.|Enrolling in classes.|Searching for classes to take.|
+|Removing classes from your course cart.|Dropping classes.|Delete classes as admin.|
+|Seeing list of dropped classes.|Swapping a class you’re registered in for a class in your course cart.|Edit Classes as admin.|
+|Cancel Advising meeting after scheduling|Adding classes to your course cart|Edit Advising meeting and add reason for scheduling|
+|Schedule Advising meeting and see available times|||
 
 As a team, we have worked on many projects together over the last 2 years. If a team member is unable to deliver for whatever reason, we are able to cover some of the work for them. Since we know each other well, we know we won’t have consistent delivery issues.
 

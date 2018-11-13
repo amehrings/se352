@@ -49,9 +49,7 @@
 			</div>
 			<div class="eight wide column">
 				<h3>Actions:</h3>
-				<p><a href="enrollCourse">Search for Courses</a></p>
-				<p><a href="enrollCourse">View Course Cart Courses</a></p>
-				<p><a href="enrollCourse">View Enrolled Courses</a></p>
+				<p><a href="/search">Search for Courses</a></p>
 			</div>
 		</div>
 	</div>
@@ -90,9 +88,8 @@
 			</div>
 			<div class="eight wide column">
 				<h3>Actions:</h3>
-				<p><a href="enrollCourse">Search for Courses</a></p>
-				<p><a href="enrollCourse">View Course Cart Courses</a></p>
-				<p><a href="enrollCourse">View Enrolled Courses</a></p>
+				<p><a href="/enrollCourse">View Enrolled Courses</a></p>
+				<p><a href="/droppedCoursesList">View Dropped Courses</a></p>
 			</div>
 		</div>
 	</div>

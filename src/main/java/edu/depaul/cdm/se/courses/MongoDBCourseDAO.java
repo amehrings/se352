@@ -20,6 +20,8 @@ public class MongoDBCourseDAO {
 	private DBCollection courseCartCol;
 	private DBCollection enrolledCol;
 	private DBCollection droppedCol;
+	private DBCollection toDoItemsCol;
+	private DBCollection finishedItemsCol;
  	
 	@SuppressWarnings("deprecation")
 	public MongoDBCourseDAO(MongoClient mongo) {
@@ -27,7 +29,8 @@ public class MongoDBCourseDAO {
 		this.courseCartCol = mongo.getDB("campusconnectsandbox").getCollection("courseCart");
 		this.enrolledCol = mongo.getDB("campusconnectsandbox").getCollection("enrollCourses");
 		this.droppedCol = mongo.getDB("campusconnectsandbox").getCollection("dropCourses");
-
+		this.toDoItemsCol = mongo.getDB("campusconnectsandbox").getCollection("toDoItems");
+		this.finishedItemsCol = mongo.getDB("campusconnectsandbox").getCollection("finishedItems");
 	}
  	
 	public Course createCourse(Course c) {
@@ -96,6 +99,26 @@ public class MongoDBCourseDAO {
 		return data;
 	}
  	
+ 	public List<String> readAllToDoItems() {
+		List<String> data = new ArrayList<String>();
+		DBCursor cursor = toDoItemsCol.find();
+		while (cursor.hasNext()) {
+			DBObject doc = cursor.next();
+			data.add(toItem(doc));
+		}
+		return data;
+	}
+ 	
+ 	public List<String> readAllFinishedItems() {
+		List<String> data = new ArrayList<String>();
+		DBCursor cursor = finishedItemsCol.find();
+		while (cursor.hasNext()) {
+			DBObject doc = cursor.next();
+			data.add(toItem(doc));
+		}
+		return data;
+	}
+ 	
  	public void deleteCourse(Course c) {
 		DBObject query = BasicDBObjectBuilder.start()
 				.append("_id", new ObjectId(c.getId())).get();
@@ -144,6 +167,24 @@ public class MongoDBCourseDAO {
 				.append("_id", new ObjectId(c.getId())).get();
 		DBObject data = this.col.findOne(query);
 		return CourseConverter.toCourse(data);
+	}
+ 	
+ 	
+ 	public void checkItem(String item) {
+		this.finishedItemsCol.insert(toDBObject(item));
+	}
+ 	
+ 	public static DBObject toDBObject(String item) {
+		BasicDBObjectBuilder builder = BasicDBObjectBuilder.start()
+				.append("item", item);
+				
+//		if (item != null)
+//			builder = builder.append("_id", new ObjectId(item));
+		return builder.get();
+	}
+ 	
+ 	public static String toItem(DBObject doc) {
+		return ((String) doc.get("item"));
 	}
 
  }

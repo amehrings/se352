@@ -27,8 +27,12 @@ public class CourseSchedulerServlet extends HttpServlet {
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
 		List<Course> courses = courseDAO.readAllCourseCart();
 		List<Course> enrolledCourses = courseDAO.readAllEnrolledCourse();
+		List<String> toDoItems = courseDAO.readAllToDoItems();
+		List<String> finishedItems = courseDAO.readAllFinishedItems();
 		request.setAttribute("courses", courses);
 		request.setAttribute("enrolledCourses", enrolledCourses);
+		request.setAttribute("toDoItems", toDoItems);
+		request.setAttribute("finishedItems", finishedItems);
  		RequestDispatcher rd = request.getRequestDispatcher("/courseScheduler.jsp");
 		rd.forward(request, response);
 	}

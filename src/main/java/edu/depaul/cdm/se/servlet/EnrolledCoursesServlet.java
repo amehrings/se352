@@ -23,6 +23,7 @@ public class EnrolledCoursesServlet extends HttpServlet {
 		String location = request.getParameter("location");
 		String professor = request.getParameter("professor");
 		String times = request.getParameter("times");
+		String description = request.getParameter("description");
 
 		MongoClient mongo = (MongoClient) request.getServletContext()
 				.getAttribute("MONGO_CLIENT");
@@ -34,6 +35,7 @@ public class EnrolledCoursesServlet extends HttpServlet {
 			c.setName(name);
 			c.setProfessor(professor);
 			c.setTimes(times);
+			c.setDescription(description);
 			courseDAO.enrollCourse(c);
 			//courseDAO.deletePreEnrolledCourse(c);
 		}

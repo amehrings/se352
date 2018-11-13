@@ -9,7 +9,15 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <style>
 	body {
-		padding: 50px !important;
+		padding-bottom: 50px !important;
+		background-color: aliceblue !important;
+	}
+	
+	.paddings{
+		padding-top: 2%;
+		padding-left: 5%;
+		padding-right: 5%;
+		padding-bottom: 5%;
 	}
 </style>
 </head>
@@ -25,7 +33,16 @@
 	</c:if>
 	<c:url value="/droppedCoursesList" var="droppedListURL"></c:url>
 
-
+	<div class="ui menu">
+	  <div class="header item">
+	    CampusConnect
+	  </div>
+	  <a class="item" href="courseScheduler">
+	    Home
+	  </a>
+	</div>
+		
+	<div class="paddings">
 	<h1>DROPPED COURSES</h1>
 	<%-- Courses List Logic --%>
 	<c:if test="${not empty requestScope.droppedCoursesList}">
@@ -55,15 +72,7 @@
 			</tbody>
 		</table>
 	</c:if>
-
-	<br/>
-	<br/>
-	<br/>
-
-	<a href="courses.jsp"><button class="ui button secondary">Return to Courses</button></a>
-	<a href="enrolledCourses"><button class="ui button secondary">Return to Enrolled Courses</button></a>
-	
-	
+	</div>
 </body>
 </html>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

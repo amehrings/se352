@@ -72,6 +72,14 @@
 					<c:url value="/deleteCourse" var="deleteURL">
 						<c:param name="id" value="${course.id}"></c:param>
 					</c:url>
+					<c:url value="/enrollCourse" var="courseCartCourseURL">
+						<c:param name="id" value="${course.id}"></c:param>
+						<c:param name="name" value="${course.name}"></c:param>
+						<c:param name="location" value="${course.location}"></c:param>
+						<c:param name="professor" value="${course.professor}"></c:param>
+						<c:param name="times" value="${course.times}"></c:param>
+						<c:param name="description" value="${course.description}"></c:param>
+					</c:url>
 					<tr>
 						<td><c:out value="${course.id}"></c:out></td>
 						<td><c:out value="${course.name}"></c:out></td>
@@ -79,6 +87,9 @@
 						<td><c:out value="${course.professor}"></c:out></td>
 						<td><c:out value="${course.location}"></c:out></td>
 						<td><c:out value="${course.times}"></c:out></td>
+						<td>
+							<a href='<c:out value="${courseCartCourseURL}" escapeXml="true"></c:out>'>Add</a>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>

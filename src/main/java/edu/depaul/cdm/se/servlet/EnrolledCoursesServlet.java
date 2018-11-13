@@ -37,7 +37,6 @@ public class EnrolledCoursesServlet extends HttpServlet {
 			c.setTimes(times);
 			c.setDescription(description);
 			courseDAO.enrollCourse(c);
-			//courseDAO.deletePreEnrolledCourse(c);
 		}
 
 		List<Course> courses = courseDAO.readAllEnrolledCourse();

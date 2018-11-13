@@ -22,23 +22,12 @@ public class SearchServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
- 		String id = request.getParameter("id");
-		String name = request.getParameter("name");
-		String location = request.getParameter("location");
 		
 		MongoClient mongo = (MongoClient) request.getServletContext()
 				.getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
-		if(id != null) {
-			Course c = new Course();
-			c.setId(id);
-			c.setLocation(location);
-			c.setName(name);
-			courseDAO.enrollCourse(c);
-			courseDAO.deletePreEnrolledCourse(c);
-		}
 
-		List<Course> courses = courseDAO.readAllEnrolledCourse();
+		List<Course> courses = courseDAO.readAllCourse();
 		request.setAttribute("courses", courses);
  		RequestDispatcher rd = getServletContext().getRequestDispatcher(
 				"/search.jsp");

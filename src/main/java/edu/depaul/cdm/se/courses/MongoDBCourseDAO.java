@@ -17,12 +17,14 @@ import com.mongodb.MongoClient;
 public class MongoDBCourseDAO {
  	
 	private DBCollection col;
+	private DBCollection courseCartCol;
 	private DBCollection enrolledCol;
 	private DBCollection droppedCol;
  	
 	@SuppressWarnings("deprecation")
 	public MongoDBCourseDAO(MongoClient mongo) {
 		this.col = mongo.getDB("campusconnectsandbox").getCollection("courses");
+		this.courseCartCol = mongo.getDB("campusconnectsandbox").getCollection("courseCart");
 		this.enrolledCol = mongo.getDB("campusconnectsandbox").getCollection("enrollCourses");
 		this.droppedCol = mongo.getDB("campusconnectsandbox").getCollection("dropCourses");
 
@@ -72,6 +74,17 @@ public class MongoDBCourseDAO {
 		return data;
 	}
  	
+ 	public List<Course> readAllCourseCart() {
+		List<Course> data = new ArrayList<Course>();
+		DBCursor cursor = courseCartCol.find();
+		while (cursor.hasNext()) {
+			DBObject doc = cursor.next();
+			Course c = CourseConverter.toCourse(doc);
+			data.add(c);
+		}
+		return data;
+	}
+ 	
  	public List<Course> readAllCourse() {
 		List<Course> data = new ArrayList<Course>();
 		DBCursor cursor = col.find();
@@ -95,10 +108,10 @@ public class MongoDBCourseDAO {
 		this.enrolledCol.remove(query);
 	}
  	
- 	public void deletePreEnrolledCourse(Course c) {
+ 	public void removeCourseCartCourse(Course c) {
 		DBObject query = BasicDBObjectBuilder.start()
 				.append("_id", new ObjectId(c.getId())).get();
-		this.col.remove(query);
+		this.courseCartCol.remove(query);
 	}
  	
  	public void enrollCourse(Course c) {
@@ -106,13 +119,15 @@ public class MongoDBCourseDAO {
 		this.enrolledCol.insert(doc);
  	}
  	
+ 	public void addCourseCartCourse(Course c) {
+ 		DBObject doc = CourseConverter.toDBObject(c);
+		this.courseCartCol.insert(doc);
+ 	}
+ 	
  	public void dropCourse(Course c) {
  		DBObject doc = CourseConverter.toDBObject(c);
 		this.droppedCol.insert(doc);
 	}
- 	
- 	public void swapCourseFromEnrolled(Course c) {
- 	}
  	
  	public void swapCourseFromCourseCart(Course c1, Course c2) {
  		DBObject doc = CourseConverter.toDBObject(c2);

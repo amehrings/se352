@@ -53,7 +53,6 @@
 			<div class="row">
 				<div class="eight wide column">
 					<div style="min-height: 300px; max-height: 300px; overflow-y: auto;">
-						<c:if test="${not empty requestScope.courses}">
 							<table class="ui striped table">
 								<thead>
 									<tr>
@@ -74,12 +73,12 @@
 									</c:forEach>
 								</tbody>
 							</table>
-						</c:if>
 					</div>
 				</div>
 				<div class="eight wide column">
 					<h3>Actions:</h3>
 					<p><a href="search">Search for Courses</a></p>
+					<p><a href="enrollCourse">View Course Cart</a></p>
 				</div>
 			</div>
 		</div>

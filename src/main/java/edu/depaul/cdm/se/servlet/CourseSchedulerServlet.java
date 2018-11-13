@@ -25,7 +25,7 @@ public class CourseSchedulerServlet extends HttpServlet {
 //		String id = request.getParameter("id");
 		MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
-		List<Course> courses = courseDAO.readAllCourse();
+		List<Course> courses = courseDAO.readAllCourseCart();
 		List<Course> enrolledCourses = courseDAO.readAllEnrolledCourse();
 		request.setAttribute("courses", courses);
 		request.setAttribute("enrolledCourses", enrolledCourses);

@@ -20,21 +20,29 @@ public class EnrollCourseServlet extends HttpServlet {
 	private static final long serialVersionUID = -6554920927964049383L;
  	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-//		if (id == null || "".equals(id)) {
-//			throw new ServletException("id missing for edit operation");
-//		}
-//		System.out.println("Course edit requested with id=" + id);
+ 		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String location = request.getParameter("location");
+		String professor = request.getParameter("professor");
+		String times = request.getParameter("times");
+		String description = request.getParameter("description");
+		
 		MongoClient mongo = (MongoClient) request.getServletContext()
 				.getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
-//		Course c = new Course();
-//		c.setId(id);
-//		c = courseDAO.readCourse(c);
-//		request.setAttribute("course", c);
+		if(id != null) {
+			Course c = new Course();
+			c.setId(id);
+			c.setLocation(location);
+			c.setName(name);
+			c.setProfessor(professor);
+			c.setTimes(times);
+			c.setDescription(description);
+			courseDAO.addCourseCartCourse(c);
+		}
 		
-		List<Course> courses = courseDAO.readAllCourse();
-		request.setAttribute("enrollCourses", courses);
+		List<Course> courseCart = courseDAO.readAllCourseCart();
+		request.setAttribute("courseCart", courseCart);
  		RequestDispatcher rd = getServletContext().getRequestDispatcher(
 				"/enroll.jsp");
 		rd.forward(request, response);

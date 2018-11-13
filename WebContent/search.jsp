@@ -45,10 +45,12 @@
 		
 	</form> -->
 	<%-- Search Request --%>
-	<form action="" class="ui form">
-		<div class="field"><label>Search: </label><input type="text" name="search" maxlength="15" placeholder="search for a class..."></div>
+	<form action="doSearch" class="ui form" method="get">
+		<div class="field">
+			<label>Search: </label>
+			<input type="text" id="inp" name="search" maxlength="15" placeholder="search for a class...">
+		</div>
 	</form>
-	
 	
 	<br> 
 	<%-- Courses List Logic --%>
@@ -80,7 +82,7 @@
 						<c:param name="times" value="${course.times}"></c:param>
 						<c:param name="description" value="${course.description}"></c:param>
 					</c:url>
-					<tr>
+					<tr id="output">
 						<td><c:out value="${course.id}"></c:out></td>
 						<td><c:out value="${course.name}"></c:out></td>
 						<td><c:out value="${course.description}"></c:out></td>

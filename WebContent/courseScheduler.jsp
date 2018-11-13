@@ -21,10 +21,23 @@
 		padding-top: 50px;
 	}
 	
+	.rightColPadding{
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+	
 	.paddings{
 		padding-top: 2%;
 		padding-left: 5%;
 		padding-right: 5%;
+	}
+	
+	.rightHeaderPadding{
+		padding-top:25px;
+	}
+	
+	.indent{
+   		text-indent:15px;
 	}
 </style>
 </head>
@@ -125,13 +138,52 @@
 				</div>
 			</div>
 		</div>
+		
 		<div class="six wide column">
 			<h1 class="ui top attached header">
-			  Advising
+			  To-Do
 			</h1>
 			<div class="ui attached segment">
 				<div class="topPadding">
 				
+				</div>
+			</div>	
+			
+			<div class="rightHeaderPadding">			
+				<h1 class="ui top attached header">
+				  Advising
+				</h1>
+				<div class="ui attached segment">
+						<h2>Your Advisor</h2>
+				     	<div class="ui divider"></div>
+						<div class="ui items">
+						  <div class="item">
+						    <a class="ui tiny image">
+						      <img src="<c:url value='/assets/L6Cg7ows.jpg'/>"/>
+						    </a>
+						    <div class="content">
+						      <a class="header">Contact information:</a>
+						      <div class="description">
+						        <p class = "indent">Name: Dibs the Mascot</p>
+						        <p class = "indent">Email: <a>dibs@depaul.edu</a></p>
+						        <p class = "indent">Number: 123-456-7890</p>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						<a href="https://campusconnect.depaul.edu/psp/CSPRD92/?cmd=login">Schedule Appointment (Bluestar) ></a>
+				</div>
+			</div>	
+			
+			<div class="rightHeaderPadding">			
+				<h1 class="ui top attached header">
+				  Quick Links
+				</h1>
+				<div class="ui attached segment">
+					<p><a href="https://campusconnect.depaul.edu/psp/CSPRD92/?cmd=login">Financial Aid ></a></p>
+					<p><a href="https://campusconnect.depaul.edu/psp/CSPRD92/?cmd=login">Degree Progress Report ></a></p>
+					<p><a href="https://campusconnect.depaul.edu/psp/CSPRD92/?cmd=login">Request Unofficial Transcript ></a></p>
+					<p><a href="https://campusconnect.depaul.edu/psp/CSPRD92/?cmd=login">Student Worker Portal ></a></p>
 				</div>
 			</div>	
 		</div>

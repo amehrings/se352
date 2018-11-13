@@ -146,45 +146,40 @@
 			  To-Do
 			</h1>
 			<div class="ui attached segment">
-				<div class="topPadding">
-					<c:if test="${not empty requestScope.toDoItems}">
-						<table class="ui very basic table">
-							<thead>
+				<c:if test="${not empty requestScope.toDoItems}">
+					<table class="ui very basic table">
+						<tbody>
+							<c:forEach items="${requestScope.toDoItems}" var="toDoItem">
+							<c:url value="/toDoItems" var="toDoItemURL">
+								<c:param name="item" value="${toDoItem}"></c:param>
+							</c:url>
 								<tr>
-									<th></th>
+									<td>
+										<a href='<c:out value="${toDoItemURL}" escapeXml="true"></c:out>'><i class="square outline icon"></i></a>
+										<c:out value="${toDoItem}"></c:out>
+									</td>
 								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${requestScope.toDoItems}" var="toDoItem">
-								<c:url value="/toDoItems" var="toDoItemURL">
-									<c:param name="item" value="${toDoItem}"></c:param>
-								</c:url>
-									<tr>
-										<td>
-											<a href='<c:out value="${toDoItemURL}" escapeXml="true"></c:out>'><i class="square outline icon"></i></a>
-											<c:out value="${toDoItem}"></c:out>
-										</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</c:if>
-					<c:if test="${not empty requestScope.finishedItems}">
-						<table class="ui very basic table">
-							<thead>
+							</c:forEach>
+						</tbody>
+					</table>
+				</c:if>
+				<div class="rightHeaderPadding">
+				<c:if test="${not empty requestScope.finishedItems}">
+					<table class="ui very basic table">
+						<thead>
+							<tr>
+								<th>Completed</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${requestScope.finishedItems}" var="finishedItem">
 								<tr>
-									<th></th>
+									<td><i class="check square icon"></i><c:out value="${finishedItem}"></c:out></td>
 								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${requestScope.finishedItems}" var="finishedItem">
-									<tr>
-										<td><i class="check square icon"></i><c:out value="${finishedItem}"></c:out></td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</c:if>
+							</c:forEach>
+						</tbody>
+					</table>
+				</c:if>
 				</div>
 			</div>	
 			

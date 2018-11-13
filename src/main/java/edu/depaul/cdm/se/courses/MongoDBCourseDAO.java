@@ -171,7 +171,13 @@ public class MongoDBCourseDAO {
  	
  	
  	public void checkItem(String item) {
+ 		DBObject query = BasicDBObjectBuilder.start()
+				.append("item", item).get();
+ 		
 		this.finishedItemsCol.insert(toDBObject(item));
+		
+		
+		this.toDoItemsCol.remove(query);
 	}
  	
  	public static DBObject toDBObject(String item) {

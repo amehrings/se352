@@ -23,28 +23,31 @@
 		<strong style="color: green;"><c:out
 				value="${requestScope.success}"></c:out></strong>
 	</c:if>
-	<c:url value="/droppedCourses" var="droppedURL"></c:url>
+	<c:url value="/droppedCoursesList" var="droppedListURL"></c:url>
 
 
+	<h1>DROPPED COURSES</h1>
 	<%-- Courses List Logic --%>
-	<c:if test="${not empty requestScope.droppedCourses}">
+	<c:if test="${not empty requestScope.droppedCoursesList}">
 		<table class="ui celled table">
 			<thead>
 				<tr>
-					<th></th>
 					<th>Name</th>
 					<th>Location</th>
+					<th>Professor</th>
+					<th>Times</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${requestScope.droppedCourses}" var="droppedCourses">
-					<c:url value="/droppedCourses" var="droppedURL">
-						<c:param name="id" value="${droppedCourses.id}"></c:param>
+				<c:forEach items="${requestScope.droppedCoursesList}" var="droppedCoursesList">
+					<c:url value="/droppedCoursesList" var="droppedListURL">
+						<c:param name="id" value="${droppedCoursesList.id}"></c:param>
 					</c:url>
 					<tr>
-						<td><input type="checkbox" action="<c:out value="${droppedCourses.id}"></c:out>"/></td>
-						<td><c:out value="${droppedCourses.name}"></c:out></td>
-						<td><c:out value="${droppedCourses.location}"></c:out></td>
+						<td><c:out value="${droppedCoursesList.name}"></c:out></td>
+						<td><c:out value="${droppedCoursesList.location}"></c:out></td>
+						<td><c:out value="${droppedCoursesList.professor}"></c:out></td>
+						<td><c:out value="${droppedCoursesList.times}"></c:out></td>
 <!-- 						<td><a -->
 <%-- 							href='<c:out value="${deleteURL}" escapeXml="true"></c:out>'>Delete</a></td> --%>
 					</tr>
@@ -58,6 +61,8 @@
 	<br/>
 
 	<a href="courses.jsp"><button class="ui button secondary">Return to Courses</button></a>
+	<a href="enrolledCourses"><button class="ui button secondary">Return to Enrolled Courses</button></a>
+	
 	
 </body>
 </html>

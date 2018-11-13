@@ -1,8 +1,7 @@
 package edu.depaul.cdm.se.servlet;
-
-import java.io.IOException;
+ import java.io.IOException;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
+ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,11 +12,9 @@ import edu.depaul.cdm.se.courses.Course;
 import edu.depaul.cdm.se.courses.MongoDBCourseDAO;
 
 import com.mongodb.MongoClient;
-
-@WebServlet("/droppedCourses")
-public class DroppedCoursesServlet extends HttpServlet {
- 	
-	private static final long serialVersionUID = -6554920927964049383L;
+ @WebServlet("/swappedNewCourses")
+public class SwappedNewCoursesServlet extends HttpServlet {
+ 	private static final long serialVersionUID = -6554920927964049383L;
  	
  	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -30,16 +27,21 @@ public class DroppedCoursesServlet extends HttpServlet {
 				.getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
 		if(id != null) {
-			Course c = new Course();
-			c.setId(id);
-			c.setLocation(location);
-			c.setName(name);
-			c.setProfessor(professor);
-			c.setTimes(times);
-			courseDAO.dropCourse(c);
-			courseDAO.deleteEnrolledCourse(c);
+			Course c2 = new Course();
+			c2.setId(id);
+			c2.setLocation(location);
+			c2.setName(name);
+			c2.setProfessor(professor);
+			c2.setTimes(times);
+			courseDAO.swapCourseFromCourseCart(SwappedCoursesServlet.c1, c2);
 		}
 		
+
+//		List<Course> swappedNewCourses = courseDAO.readAllCourse();
+//		request.setAttribute("swappedNewCourses", swappedNewCourses);
+// 		RequestDispatcher rd = getServletContext().getRequestDispatcher(
+//				"/enrolledCourses");
+//		rd.forward(request, response);
 		response.sendRedirect("enrolledCourses");
 	}
 // 	protected void doPost(HttpServletRequest request,

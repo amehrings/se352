@@ -19,7 +19,6 @@ public class MongoDBCourseDAO {
 	private DBCollection col;
 	private DBCollection enrolledCol;
 	private DBCollection droppedCol;
-
  	
 	@SuppressWarnings("deprecation")
 	public MongoDBCourseDAO(MongoClient mongo) {
@@ -110,10 +109,20 @@ public class MongoDBCourseDAO {
  	public void dropCourse(Course c) {
  		DBObject doc = CourseConverter.toDBObject(c);
 		this.droppedCol.insert(doc);
-//		ObjectId id = (ObjectId) doc.get("_id");
-//		c.setId(id.toString());
-//		c.setName(name);
 	}
+ 	
+ 	public void swapCourseFromEnrolled(Course c) {
+ 	}
+ 	
+ 	public void swapCourseFromCourseCart(Course c1, Course c2) {
+ 		DBObject doc = CourseConverter.toDBObject(c2);
+		this.enrolledCol.insert(doc);
+		
+		DBObject query = BasicDBObjectBuilder.start()
+				.append("_id", new ObjectId(c1.getId())).get();
+		this.enrolledCol.remove(query);
+		
+ 	}
  	
  	public Course readCourse(Course c) {
 		DBObject query = BasicDBObjectBuilder.start()
@@ -121,4 +130,5 @@ public class MongoDBCourseDAO {
 		DBObject data = this.col.findOne(query);
 		return CourseConverter.toCourse(data);
 	}
+
  }

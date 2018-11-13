@@ -21,10 +21,9 @@ public class EnrolledCoursesServlet extends HttpServlet {
  		String id = request.getParameter("id");
 		String name = request.getParameter("name");
 		String location = request.getParameter("location");
-		//		if (id == null || "".equals(id)) {
-//			throw new ServletException("id missing for edit operation");
-//		}
-//		System.out.println("Course edit requested with id=" + id);
+		String professor = request.getParameter("professor");
+		String times = request.getParameter("times");
+
 		MongoClient mongo = (MongoClient) request.getServletContext()
 				.getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
@@ -33,13 +32,12 @@ public class EnrolledCoursesServlet extends HttpServlet {
 			c.setId(id);
 			c.setLocation(location);
 			c.setName(name);
+			c.setProfessor(professor);
+			c.setTimes(times);
 			courseDAO.enrollCourse(c);
-			courseDAO.deletePreEnrolledCourse(c);
+			//courseDAO.deletePreEnrolledCourse(c);
 		}
-//		Course c = new Course();
-//		c.setId(id);
-//		c = courseDAO.readCourse(c);
-//		request.setAttribute("course", c);
+
 		List<Course> courses = courseDAO.readAllEnrolledCourse();
 		request.setAttribute("enrolledCourses", courses);
  		RequestDispatcher rd = getServletContext().getRequestDispatcher(

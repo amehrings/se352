@@ -77,8 +77,8 @@ The requirements were to have 3 major functionalities, use a database, and Javas
 |Create classes as an administrator.|Enrolling in classes.|Searching for classes to take.|
 |Removing classes from your course cart.|Dropping classes.|Delete classes as admin.|
 |Seeing list of dropped classes.|Swapping a class you’re registered in for a class in your course cart.|Edit Classes as admin.|
-|Cancel Advising meeting after scheduling||Adding classes to your course cart||Edit Advising meeting and add reason for scheduling|
-|Schedule Advising meeting and see available times|||||
+|Cancel Advising meeting after scheduling|Adding classes to your course cart|Edit Advising meeting and add reason for scheduling|
+|Schedule Advising meeting and see available times|||
 
 As a team, we have worked on many projects together over the last 2 years. If a team member is unable to deliver for whatever reason, we are able to cover some of the work for them. Since we know each other well, we know we won’t have consistent delivery issues.
 

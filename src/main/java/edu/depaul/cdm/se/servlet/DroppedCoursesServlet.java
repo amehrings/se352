@@ -1,7 +1,8 @@
 package edu.depaul.cdm.se.servlet;
- import java.io.IOException;
+
+import java.io.IOException;
 import java.util.List;
- import javax.servlet.RequestDispatcher;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,9 +13,11 @@ import edu.depaul.cdm.se.courses.Course;
 import edu.depaul.cdm.se.courses.MongoDBCourseDAO;
 
 import com.mongodb.MongoClient;
- @WebServlet("/droppedCourses")
+
+@WebServlet("/droppedCourses")
 public class DroppedCoursesServlet extends HttpServlet {
- 	private static final long serialVersionUID = -6554920927964049383L;
+ 	
+	private static final long serialVersionUID = -6554920927964049383L;
  	
  	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {

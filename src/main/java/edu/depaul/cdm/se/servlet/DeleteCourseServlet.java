@@ -1,7 +1,9 @@
 package edu.depaul.cdm.se.servlet;
- import java.io.IOException;
+
+import java.io.IOException;
 import java.util.List;
- import javax.servlet.RequestDispatcher;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,9 +14,11 @@ import edu.depaul.cdm.se.courses.Course;
 import edu.depaul.cdm.se.courses.MongoDBCourseDAO;
 
 import com.mongodb.MongoClient;
- @WebServlet("/deleteCourse")
+
+@WebServlet("/deleteCourse")
 public class DeleteCourseServlet extends HttpServlet {
- 	private static final long serialVersionUID = 6798036766148281767L;
+ 	
+	private static final long serialVersionUID = 6798036766148281767L;
  	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");

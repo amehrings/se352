@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -6,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Manage Courses</title>
+<title>CC | Enroll</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <style>
 	body {
@@ -39,13 +38,13 @@
 
 	<%-- Courses List Logic --%>
 	<c:if test="${not empty requestScope.courses}">
-		<table class="ui unstackable table">
+		<table class="ui very basic table">
 			<thead>
 				<tr>
-<!-- 					<th>ID</th> -->
-					<th>Name</th>
-					<th>Enroll</th>
 					<th></th>
+					<th>Name</th>
+					<th>Location</th>
+					<th>Enroll</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -61,10 +60,8 @@
 					<tr>
 						<td><input type="checkbox" action="<c:out value="${course.id}"></c:out>"/></td>
 						<td><c:out value="${course.name}"></c:out></td>
-						<td><c:out value="${person.location}"></c:out></td>
-						<td>
-							<a href='<c:out value="${enrolledURL}" escapeXml="true"></c:out>'>Enroll</a>
-						</td>
+						<td><c:out value="${course.location}"></c:out></td>
+						<td><a href='<c:out value="${enrolledURL}" escapeXml="true"></c:out>'>Enroll</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -91,4 +88,5 @@
 
 </body>
 </html>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>

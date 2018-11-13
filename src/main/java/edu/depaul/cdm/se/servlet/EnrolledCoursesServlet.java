@@ -41,7 +41,7 @@ public class EnrolledCoursesServlet extends HttpServlet {
 //		c = courseDAO.readCourse(c);
 //		request.setAttribute("course", c);
 		List<Course> courses = courseDAO.readAllEnrolledCourse();
-		request.setAttribute("courses", courses);
+		request.setAttribute("enrolledCourses", courses);
  		RequestDispatcher rd = getServletContext().getRequestDispatcher(
 				"/enrolledCourses.jsp");
 		rd.forward(request, response);
@@ -65,7 +65,7 @@ public class EnrolledCoursesServlet extends HttpServlet {
 		System.out.println("Course Added Successfully with id="+c.getId());
 		request.setAttribute("success", "Course Added Successfully");
 		List<Course> courses = courseDAO.readAllEnrolledCourse();
-		request.setAttribute("courses", courses);
+		request.setAttribute("enrolledCourses", courses);
 
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(
 				"/courses.jsp");

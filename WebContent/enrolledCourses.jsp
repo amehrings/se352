@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -6,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Enrolled Courses</title>
+<title>CC | Enrolled Courses</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <style>
 	body {
@@ -32,7 +31,7 @@
 	<%-- Courses List Logic --%>
 	<h1>ENROLLED COURSES</h1>
 	<c:if test="${not empty requestScope.courses}">
-		<table class="ui celled table">
+		<table class="ui very basic table">
 			<thead>
 			
 				<tr>
@@ -45,21 +44,21 @@
 <!-- 				<form action="droppedCourses"> -->
 <!-- 	<form action="swapCourse"> -->
 
-				<c:forEach items="${requestScope.courses}" var="course">
+				<c:forEach items="${requestScope.enrolledCourses}" var="course">
 					<c:url value="/enrolledCourses" var="enrolledURL">
-						<c:param name="id" value="${course.id}"></c:param>
+						<c:param name="id" value="${enrolledCourses.id}"></c:param>
 					</c:url>
 					<c:url value="/droppedCourses" var="droppedURL">
-						<c:param name="id" value="${course.id}"></c:param>
-						<c:param name="name" value="${course.name}"></c:param>
-						<c:param name="location" value="${course.location}"></c:param>
+						<c:param name="id" value="${enrolledCourses.id}"></c:param>
+						<c:param name="name" value="${enrolledCourses.name}"></c:param>
+						<c:param name="location" value="${enrolledCourses.location}"></c:param>
 					</c:url>
 					<tr>
 <%-- 						<td><input type="checkbox" action="<c:out value="${droppedURL}" escapeXml="true"></c:out>"/></td> --%>
 						<td><a
 							href='<c:out value="${droppedURL}" escapeXml="true"></c:out>'>Drop</a></td>
-						<td><c:out value="${course.name}"></c:out></td>
-						<td><c:out value="${course.location}"></c:out></td>
+						<td><c:out value="${enrolledCourses.name}"></c:out></td>
+						<td><c:out value="${enrolledCourses.location}"></c:out></td>
  					</tr>
 				</c:forEach>
 				<tr>
@@ -114,4 +113,5 @@
 	
 </body>
 </html>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>

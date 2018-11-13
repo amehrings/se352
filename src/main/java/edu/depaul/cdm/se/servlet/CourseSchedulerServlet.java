@@ -15,19 +15,21 @@ import edu.depaul.cdm.se.courses.MongoDBCourseDAO;
 
 import com.mongodb.MongoClient;
 
-@WebServlet("/getCourses")
+@WebServlet("/courseScheduler")
 public class CourseSchedulerServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -7060758261496829905L;
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
+//		String id = request.getParameter("id");
 		MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
 		List<Course> courses = courseDAO.readAllCourse();
+		List<Course> enrolledCourses = courseDAO.readAllEnrolledCourse();
 		request.setAttribute("courses", courses);
- 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/courseScheduler.jsp");
+		request.setAttribute("enrolledCourses", enrolledCourses);
+ 		RequestDispatcher rd = request.getRequestDispatcher("/courseScheduler.jsp");
 		rd.forward(request, response);
 	}
 	

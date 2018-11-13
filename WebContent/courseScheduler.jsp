@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -6,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Manage Courses</title>
+<title>CC | Course Scheduler</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 <style>
 	body {
@@ -14,86 +13,90 @@
 	}
 </style>
 </head>
-<body>
-	<div>
-	<%-- Courses List Logic --%>
-	<h3>Course Cart Courses </h3>
-	<c:if test="${not empty requestScope.courses}">
-		<table class="ui striped table">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Edit</th>
-					<th>Delete</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${requestScope.courses}" var="course">
-					<c:url value="/editCourse" var="editURL">
-						<c:param name="id" value="${course.id}"></c:param>
-					</c:url>
-					<c:url value="/deleteCourse" var="deleteURL">
-						<c:param name="id" value="${course.id}"></c:param>
-					</c:url>
-					<tr>
-						<td><c:out value="${course.id}"></c:out></td>
-						<td><c:out value="${course.name}"></c:out></td>
-						<td><c:out value="${person.location}"></c:out></td>
-						<td><a
-							href='<c:out value="${editURL}" escapeXml="true"></c:out>'>Edit</a></td>
-						<td><a
-							href='<c:out value="${deleteURL}" escapeXml="true"></c:out>'>Delete</a></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</c:if>
-	<div class="ui divider"></div>
-	<h3>Actions:</h3>
-	<p><a href="enrollCourse">Search for Courses</a></p>
-	<p><a href="enrollCourse">View Course Cart Courses</a></p>
-	<p><a href="enrollCourse">View Enrolled Courses</a></p>
+<body>	
+	<h1 class="ui header">Course Scheduler</h1>
+	<h4 class="ui horizontal divider header">
+	  <i class="shopping cart icon"></i>
+	  COURSE CART
+	</h4>
+	<div class="ui two column grid">
+		<div class="row">
+			<div class="eight wide column">
+				<div style="min-height: 300px; max-height: 300px; overflow-y: auto;">
+					<c:if test="${not empty requestScope.courses}">
+						<table class="ui striped table">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Professor</th>
+									<th>Location</th>
+									<th>Times</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${requestScope.courses}" var="course">
+									<tr>
+										<td><c:out value="${course.name}"></c:out></td>
+										<td><c:out value="${course.professor}"></c:out></td>
+										<td><c:out value="${course.location}"></c:out></td>
+										<td><c:out value="${course.times}"></c:out></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</c:if>
+				</div>
+			</div>
+			<div class="eight wide column">
+				<h3>Actions:</h3>
+				<p><a href="enrollCourse">Search for Courses</a></p>
+				<p><a href="enrollCourse">View Course Cart Courses</a></p>
+				<p><a href="enrollCourse">View Enrolled Courses</a></p>
+			</div>
+		</div>
 	</div>
-	<br/><br/><br/>	
-	<div>
-		<h3>Enrolled Courses </h3>
-		<c:if test="${not empty requestScope.enrollCourses}">
-			<p>test</p>
-			<table>
-				<tbody>
-					<tr>
-						<th>ID</th>
-						<th>Name</th>
-						<th>Edit</th>
-						<th>Delete</th>
-					</tr>
-					<c:forEach items="${requestScope.enrollCourses}" var="course">
-						<c:url value="/editCourse" var="editURL">
-							<c:param name="id" value="${course.id}"></c:param>
-						</c:url>
-						<c:url value="/deleteCourse" var="deleteURL">
-							<c:param name="id" value="${course.id}"></c:param>
-						</c:url>
-						<tr>
-							<td><c:out value="${course.id}"></c:out></td>
-							<td><c:out value="${course.name}"></c:out></td>
-							<td><c:out value="${person.location}"></c:out></td>
-							<td><a
-								href='<c:out value="${editURL}" escapeXml="true"></c:out>'>Edit</a></td>
-							<td><a
-								href='<c:out value="${deleteURL}" escapeXml="true"></c:out>'>Delete</a></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</c:if>
-		<div class="ui divider"></div>
-		<h3>Actions:</h3>
-		<p><a href="enrollCourse">Search for Courses</a></p>
-		<p><a href="enrollCourse">View Course Cart Courses</a></p>
-		<p><a href="enrollCourse">View Enrolled Courses</a></p>
+		
+	<h4 class="ui horizontal divider header">
+	  <i class="bookmark icon"></i>
+	  ENROLLED COURSES
+	</h4>
+	<div class="ui two column grid">
+		<div class="row">
+			<div class="eight wide column">
+				<div style="min-height: 300px; max-height: 300px; overflow-y: auto;">
+					<c:if test="${not empty requestScope.enrolledCourses}">
+						<table class="ui striped table">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Professor</th>
+									<th>Location</th>
+									<th>Times</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${requestScope.enrolledCourses}" var="enrolledCourse">
+									<tr>
+										<td><c:out value="${enrolledCourse.name}"></c:out></td>
+										<td><c:out value="${enrolledCourse.professor}"></c:out></td>
+										<td><c:out value="${enrolledCourse.location}"></c:out></td>
+										<td><c:out value="${enrolledCourse.times}"></c:out></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</c:if>
+				</div>
+			</div>
+			<div class="eight wide column">
+				<h3>Actions:</h3>
+				<p><a href="enrollCourse">Search for Courses</a></p>
+				<p><a href="enrollCourse">View Course Cart Courses</a></p>
+				<p><a href="enrollCourse">View Enrolled Courses</a></p>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>

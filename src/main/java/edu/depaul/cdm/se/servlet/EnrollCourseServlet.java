@@ -1,7 +1,8 @@
 package edu.depaul.cdm.se.servlet;
- import java.io.IOException;
+
+import java.io.IOException;
 import java.util.List;
- import javax.servlet.RequestDispatcher;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,9 +13,11 @@ import edu.depaul.cdm.se.courses.Course;
 import edu.depaul.cdm.se.courses.MongoDBCourseDAO;
 
 import com.mongodb.MongoClient;
- @WebServlet("/enrollCourse")
+
+@WebServlet("/enrollCourse")
 public class EnrollCourseServlet extends HttpServlet {
- 	private static final long serialVersionUID = -6554920927964049383L;
+ 	
+	private static final long serialVersionUID = -6554920927964049383L;
  	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
@@ -31,7 +34,7 @@ public class EnrollCourseServlet extends HttpServlet {
 //		request.setAttribute("course", c);
 		
 		List<Course> courses = courseDAO.readAllCourse();
-		request.setAttribute("courses", courses);
+		request.setAttribute("enrollCourses", courses);
  		RequestDispatcher rd = getServletContext().getRequestDispatcher(
 				"/enroll.jsp");
 		rd.forward(request, response);
@@ -56,7 +59,7 @@ public class EnrollCourseServlet extends HttpServlet {
 			c.setLocation(location);
 			request.setAttribute("course", c);
 			List<Course> courses = courseDAO.readAllCourse();
-			request.setAttribute("courses", courses);
+			request.setAttribute("enrollCourses", courses);
  			RequestDispatcher rd = getServletContext().getRequestDispatcher(
 					"/enroll.jsp");
 			rd.forward(request, response);
@@ -72,7 +75,7 @@ public class EnrollCourseServlet extends HttpServlet {
 			System.out.println("Course enrolled successfully with id=" + id);
 			request.setAttribute("success", "Course enrolled successfully");
 			List<Course> courses = courseDAO.readAllCourse();
-			request.setAttribute("courses", courses);
+			request.setAttribute("enrollCourses", courses);
  			RequestDispatcher rd = getServletContext().getRequestDispatcher(
 					"/enroll.jsp");
 			rd.forward(request, response);

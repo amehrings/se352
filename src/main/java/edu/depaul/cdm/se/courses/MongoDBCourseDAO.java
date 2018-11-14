@@ -169,11 +169,8 @@ public class MongoDBCourseDAO {
 		return CourseConverter.toCourse(data);
 	}
  	
- 	public String createToDo(String toDo) {
-		DBObject doc = toDBObject(toDo);
-		this.toDoItemsCol.insert(doc);
-		
-		return toDo;
+ 	public void createToDo(String toDo) {
+		this.toDoItemsCol.insert(toDBObject(toDo));
 	}
  	
  	public void checkItem(String item) {

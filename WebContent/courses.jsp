@@ -26,7 +26,7 @@
 	<c:url value="/addCourse" var="addURL"></c:url>
 	<c:url value="/editCourse" var="editURL"></c:url>
 	<c:url value="courseScheduler" var="schedulerURL"></c:url>
-	<c:url value="addToDo" var="addToDoURL"></c:url>
+	<c:url value="/addToDo" var="addToDoURL"></c:url>
 	
 	<h1>Admin View</h1> <a href="login.jsp">(Log Out)</a>
 	<br><br>
@@ -34,7 +34,6 @@
 	<div class="ui divider"></div>
 	<form action="enrollCourse">
 		<button type="submit" class="ui button primary">Enroll in Courses</button>
-		<button type="submit" formaction="search" class="ui button primary">Search for Courses</button>
 		<button type="submit" formaction="getCourses" class="ui button secondary">View Course Scheduler</button>
 		
 	</form>
@@ -57,7 +56,7 @@
 			<div class="field"><label>Course ID: </label><input type="text" value="${requestScope.course.id}" readonly="readonly" name="id"></div>
 				<div class="two fields"><div class="field"><label>Course Name: </label><input type="text" value="${requestScope.course.name}" name="name" maxlength="7"></div>
 				<div class="field"><label>Course Location: </label><input type="text" value="${requestScope.course.location}" name="location" maxlength="15"></div></div>
-				<div class="field"><label>Course Description: </label><textarea type="text" value="${requestScope.course.description}" name="description" maxlength="50" rows="2"></textarea></div>
+				<div class="field"><label>Course Description: </label><input type="text" value="${requestScope.course.description}" name="description" maxlength="50"/></div>
 				<div class="two fields"><div class="field"><label>Course Professor: </label><input type="text" value="${requestScope.course.professor}" name="professor" maxlength="30"></div>
 				<div class="field"><label>Course Times: </label><input type="text" value="${requestScope.course.times}" name="times" maxlength="11"></div></div>
 				<button type="submit" class="ui button">Edit Course</button>
@@ -69,7 +68,7 @@
 		<form action='<c:out value="${addURL}"></c:out>' method="post" class="ui form">
 			<div class="two fields"><div class="field"><label>Course Name: </label><input type="text" name="name" maxlength="7"></div> 
 			<div class="field"><label>Course Location: </label><input type="text" name="location" maxlength="15"></div></div>
-			<div class="field"><label>Course Description: </label><textarea name="description" maxlength="50" rows="2"></textarea></div>
+			<div class="field"><label>Course Description: </label><input type="text" name="description" maxlength="50"/></div>
 			<div class="two fields"><div class="field"><label>Course Professor: </label><input type="text" name="professor" maxlength="30"></div>
 			<div class="field"><label>Course Times: </label><input type="text" name="times" maxlength="11"></div></div>
 			<button type="submit" class="ui button">Add Course</button>
@@ -123,13 +122,22 @@
 	<br><br>
 	
 	<h2>To-Dos</h2>
-	<p id="toDoDesc">Add any action items for students here</p>
-	<form action='<c:out value="${addCourseURL}"></c:out>' method="post" class="ui form">
-			<div class="field">
-				<label>Action item to add: </label>
-				<input type="text" name="itemToAdd"></div>
-				<button type="submit" class="ui button">Add To-Do</button>
-		</form>
+	<c:if test="${requestScope.todoError ne null}">
+		<strong style="color: red;"><c:out
+				value="${requestScope.todoError}"></c:out></strong>
+	</c:if>
+	<c:if test="${requestScope.todoSuccess ne null}">
+		<strong style="color: green;"><c:out
+				value="${requestScope.todoSuccess}"></c:out></strong>
+	</c:if>
+	<p id="toDoDesc">Add any action items for students here.</p>
+	<form action='<c:out value="${addToDoURL}"></c:out>' method="post" class="ui form">
+		<div class="field">
+			<label>Action item to add:</label>
+			<input type="text" name="itemToAdd" maxlength="30">
+		</div>
+		<button type="submit" class="ui button">Add To-Do</button>
+	</form>
 	
 	
 	

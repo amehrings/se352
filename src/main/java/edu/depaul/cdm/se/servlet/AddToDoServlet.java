@@ -24,14 +24,9 @@ public class AddToDoServlet extends HttpServlet {
 	private static final long serialVersionUID = -7060758261496829905L;
 	private static final Logger LOG = LoggerFactory.getLogger("CampusConnect");
 	
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		//String id = request.getParameter("id");
-		String name = request.getParameter("name");
-		String location = request.getParameter("location");
-		String description = request.getParameter("description");
-		String professor = request.getParameter("professor");
-		String times = request.getParameter("times");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String todo = request.getParameter("itemToAdd");
 		
 		RequestDispatcher rd;
 		MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
@@ -39,48 +34,24 @@ public class AddToDoServlet extends HttpServlet {
 		List<Course> courses;
 		
 		//if adding do item
-		if (request.getAttribute("itemToAdd") != null || !request.getAttribute("itemToAdd").equals("")) {
-			courseDAO.createToDo(request.getParameter("itemToAdd"));
+		if (todo == null || todo.equals("")) {
+			request.setAttribute("todoError", "Field can't be empty.");
+			courses = courseDAO.readAllCourse();
+			request.setAttribute("courses", courses);
+			rd = getServletContext().getRequestDispatcher("/courses.jsp");
+			rd.forward(request, response);
+		}
+		else {
+			courseDAO.createToDo(todo);
 			LOG.info("toDo added!");
 			
-			request.setAttribute("success", "todo Added Successfully");
+			request.setAttribute("todoSuccess", "Task Added Successfully");
 			courses = courseDAO.readAllCourse();
 			List<String> toDoItems = courseDAO.readAllToDoItems();
 			request.setAttribute("courses", courses);
 			request.setAttribute("toDoItems", toDoItems);
 			
 			rd = getServletContext().getRequestDispatcher("/courses.jsp");
-			rd.forward(request, response);
-		}
-		//if adding course, but missing parameter	
-		else if ((name == null || name.equals(""))
-				|| (location == null || location.equals(""))
-				|| (description == null || description.equals(""))
-				|| (professor == null || professor.equals(""))
-				|| (times == null || times.equals(""))) {
-			request.setAttribute("error", "Mandatory Parameters Missing");
-			rd = getServletContext().getRequestDispatcher(
-					"/courses.jsp");
-			rd.forward(request, response);
-		} 
-		
-		//adding course
-		else {
-			Course c = new Course();
-			c.setLocation(location);
-			c.setName(name);
-			c.setDescription(description);
-			c.setTimes(times);
-			c.setProfessor(professor);
-			
-			courseDAO.createCourse(c);
-			LOG.info("Course Added Successfully with id="+c.getId());
-			request.setAttribute("success", "Course Added Successfully");
-			courses = courseDAO.readAllCourse();
-			request.setAttribute("courses", courses);
-
-			rd = getServletContext().getRequestDispatcher(
-					"/courses.jsp");
 			rd.forward(request, response);
 		}
 	}

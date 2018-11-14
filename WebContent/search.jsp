@@ -49,6 +49,7 @@
 		<div class="field">
 			<label>Search: </label>
 			<input type="text" id="inp" name="search" maxlength="15" placeholder="search for a class...">
+			<p style="color:gray">Press enter to search</p>
 		</div>
 	</form>
 	
@@ -64,6 +65,7 @@
 					<th>Professor</th>
 					<th>Location</th>
 					<th>Times</th>
+					<th>Add Course</th>
 				</tr>
 			</thead>
 			<tbody>

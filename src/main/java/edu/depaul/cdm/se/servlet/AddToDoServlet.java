@@ -18,7 +18,7 @@ import edu.depaul.cdm.se.courses.MongoDBCourseDAO;
 
 import com.mongodb.MongoClient;
 
-@WebServlet("/addCourse")
+@WebServlet("/addToDo")
 public class AddToDoServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -7060758261496829905L;

@@ -19,24 +19,27 @@ import com.mongodb.MongoClient;
 public class EditCoursesServlet extends HttpServlet {
  	
 	private static final long serialVersionUID = -6554920927964049383L;
- 	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+ 	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String id = request.getParameter("id");
+		
 		if (id == null || "".equals(id)) {
 			throw new ServletException("id missing for edit operation");
 		}
+		
 		System.out.println("Course edit requested with id=" + id);
-		MongoClient mongo = (MongoClient) request.getServletContext()
-				.getAttribute("MONGO_CLIENT");
+		
+		MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
+		
 		Course c = new Course();
 		c.setId(id);
 		c = courseDAO.readCourse(c);
 		request.setAttribute("course", c);
 		List<Course> courses = courseDAO.readAllCourse();
 		request.setAttribute("courses", courses);
- 		RequestDispatcher rd = getServletContext().getRequestDispatcher(
-				"/courses.jsp");
+ 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/courses.jsp");
 		rd.forward(request, response);
 	}
  	protected void doPost(HttpServletRequest request,
@@ -69,8 +72,7 @@ public class EditCoursesServlet extends HttpServlet {
 			request.setAttribute("course", c);
 			List<Course> courses = courseDAO.readAllCourse();
 			request.setAttribute("courses", courses);
- 			RequestDispatcher rd = getServletContext().getRequestDispatcher(
-					"/courses.jsp");
+ 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/courses.jsp");
 			rd.forward(request, response);
 		} else {
 			MongoClient mongo = (MongoClient) request.getServletContext()
@@ -88,8 +90,7 @@ public class EditCoursesServlet extends HttpServlet {
 			request.setAttribute("success", "Course edited successfully");
 			List<Course> courses = courseDAO.readAllCourse();
 			request.setAttribute("courses", courses);
- 			RequestDispatcher rd = getServletContext().getRequestDispatcher(
-					"/courses.jsp");
+ 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/courses.jsp");
 			rd.forward(request, response);
 		}
 	}

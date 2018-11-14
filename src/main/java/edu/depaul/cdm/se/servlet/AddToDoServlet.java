@@ -24,8 +24,7 @@ public class AddToDoServlet extends HttpServlet {
 	private static final long serialVersionUID = -7060758261496829905L;
 	private static final Logger LOG = LoggerFactory.getLogger("CampusConnect");
 	
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String todo = request.getParameter("itemToAdd");
 		
@@ -35,11 +34,18 @@ public class AddToDoServlet extends HttpServlet {
 		List<Course> courses;
 		
 		//if adding do item
-		if (request.getAttribute("itemToAdd") != null || !("").equals(todo)) {
+		if (todo == null || todo.equals("")) {
+			request.setAttribute("todoError", "Field can't be empty.");
+			courses = courseDAO.readAllCourse();
+			request.setAttribute("courses", courses);
+			rd = getServletContext().getRequestDispatcher("/courses.jsp");
+			rd.forward(request, response);
+		}
+		else {
 			courseDAO.createToDo(todo);
 			LOG.info("toDo added!");
 			
-			request.setAttribute("success", "todo Added Successfully");
+			request.setAttribute("todoSuccess", "Task Added Successfully");
 			courses = courseDAO.readAllCourse();
 			List<String> toDoItems = courseDAO.readAllToDoItems();
 			request.setAttribute("courses", courses);

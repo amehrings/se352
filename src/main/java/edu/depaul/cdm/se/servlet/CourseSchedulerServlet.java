@@ -38,12 +38,11 @@ public class CourseSchedulerServlet extends HttpServlet {
 		
 		boolean isStudent;
 		RequestDispatcher rd;
-		isStudent = (request.getParameter("isStudent").equals("yes")) ? true : false;
-		
-		if(isStudent) {
-	 		rd = request.getRequestDispatcher("/courseScheduler.jsp");		
-		} else {
-			rd = request.getRequestDispatcher("/courses.jsp");
+		rd = request.getRequestDispatcher("/courseScheduler.jsp");
+		if (request.getParameter("isStudent") != null) {
+			isStudent = (request.getParameter("isStudent").equals("yes")) ? true : false;
+			if(!isStudent)
+		 		rd = request.getRequestDispatcher("/courses.jsp");
 		}
 		rd.forward(request, response);
 	}

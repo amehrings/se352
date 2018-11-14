@@ -22,8 +22,6 @@
 </style>
 </head>
 <body>
-
-
 	<div class="ui menu">
 	  <div class="header item">
 	    CampusConnect
@@ -32,18 +30,14 @@
 	    Home
 	  </a>
 	</div>
-		
+	<h1 class="ui horizontal divider header">
+	  <i class="search icon"></i>
+	  SEARCH
+	</h1>
+					
 	<div class="paddings">
-	<h1> to be complete </h1>
 	<c:url value="courseScheduler" var="schedulerURL"></c:url>
 
-	<div class="ui divider"></div>
-	<!-- <form action="enrollCourse">
-		<button type="submit" formaction="enrollCourse" class="ui button primary">Enroll in Courses</button>
-		<button type="submit" formaction="courses.jsp" class="ui button Primary">Add/Edit Courses</button>
-		<button type="submit" formaction="getCourses" class="ui button secondary">View Course Scheduler</button>
-		
-	</form> -->
 	<%-- Search Request --%>
 	<form action="doSearch" class="ui form" method="get">
 		<div class="field">

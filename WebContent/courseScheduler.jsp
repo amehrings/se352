@@ -47,9 +47,6 @@
   <div class="header item">
     CampusConnect
   </div>
-  <a class="item" href="courseScheduler">
-    Home
-  </a>
 </div>
 
 <div class="paddings">

@@ -42,6 +42,15 @@
 	  <a class="item" href="courseScheduler">
 	    Home
 	  </a>
+	  <a class="item" href="search">
+	    Course Search
+	  </a>
+	  <a class="item" href="enrollCourse">
+	    Course Cart
+	  </a>
+	  <a class="item" href="droppedCoursesList">
+	    Dropped
+	  </a>
 	</div>
 
 	<div class="paddings">

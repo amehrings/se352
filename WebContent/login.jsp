@@ -11,6 +11,10 @@
 	body {
 		padding: 50px !important;
 	}
+	
+	input#isStudent {
+		margin-left: 1 %;
+	}
 </style>
 </head>
 	<body style="padding:0 !important;">
@@ -30,6 +34,11 @@
 						<div class="field">
 							<label>Password</label>
 							<input type="password" placeholder="Password" minlength="8" maxlength="20" required/>
+						</div>
+						<div class="field">
+							<label>Student or Faculty?</label>
+							Student: <input id="isStudent" name="isStudent" value="yes" type="radio" required/>
+							Faculty: <input id="isStudent" name="isStudent" value="no" type="radio" required/ >
 						</div>
 						<button type="submit" class="ui button submit">Login</button>
 					</form>

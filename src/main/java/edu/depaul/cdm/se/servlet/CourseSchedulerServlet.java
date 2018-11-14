@@ -22,18 +22,29 @@ public class CourseSchedulerServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-//		String id = request.getParameter("id");
+		
 		MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
-		List<Course> courses = courseDAO.readAllCourseCart();
+		List<Course> courses = courseDAO.readAllCourse();
+		List<Course> courseCartCourses = courseDAO.readAllCourseCart();
 		List<Course> enrolledCourses = courseDAO.readAllEnrolledCourse();
 		List<String> toDoItems = courseDAO.readAllToDoItems();
 		List<String> finishedItems = courseDAO.readAllFinishedItems();
 		request.setAttribute("courses", courses);
+		request.setAttribute("courseCartCourses", courseCartCourses);
 		request.setAttribute("enrolledCourses", enrolledCourses);
 		request.setAttribute("toDoItems", toDoItems);
 		request.setAttribute("finishedItems", finishedItems);
- 		RequestDispatcher rd = request.getRequestDispatcher("/courseScheduler.jsp");
+		
+		boolean isStudent;
+		RequestDispatcher rd;
+		isStudent = (request.getParameter("isStudent").equals("yes")) ? true : false;
+		
+		if(isStudent) {
+	 		rd = request.getRequestDispatcher("/courseScheduler.jsp");		
+		} else {
+			rd = request.getRequestDispatcher("/courses.jsp");
+		}
 		rd.forward(request, response);
 	}
 	

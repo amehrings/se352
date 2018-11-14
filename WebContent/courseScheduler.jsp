@@ -77,7 +77,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${requestScope.courses}" var="course">
+										<c:forEach items="${requestScope.courseCartCourses}" var="course">
 											<tr>
 												<td><c:out value="${course.name}"></c:out></td>
 												<td><c:out value="${course.professor}"></c:out></td>

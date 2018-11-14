@@ -39,35 +39,35 @@ public class EnrolledCoursesServlet extends HttpServlet {
 			courseDAO.enrollCourse(c);
 		}
 
-		List<Course> courses = courseDAO.readAllEnrolledCourse();
-		request.setAttribute("enrolledCourses", courses);
+		List<Course> enrolledCourses = courseDAO.readAllEnrolledCourse();
+		request.setAttribute("enrolledCourses", enrolledCourses);
  		RequestDispatcher rd = getServletContext().getRequestDispatcher(
 				"/enrolledCourses.jsp");
 		rd.forward(request, response);
 	}
- 	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id"); // keep it non-editable in UI
-		if (id == null || "".equals(id)) {
-			throw new ServletException("id missing for edit operation");
-		}
- 		String name = request.getParameter("name");
-		String location = request.getParameter("location");
-		Course c = new Course();
-		c.setLocation(location);
-		c.setName(name);
-		//c.setId(id);
-		MongoClient mongo = (MongoClient) request.getServletContext()
-				.getAttribute("MONGO_CLIENT");
-		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
-		courseDAO.createEnrolledCourse(c);
-		System.out.println("Course Added Successfully with id="+c.getId());
-		request.setAttribute("success", "Course Added Successfully");
-		List<Course> courses = courseDAO.readAllEnrolledCourse();
-		request.setAttribute("enrolledCourses", courses);
-
-		RequestDispatcher rd = getServletContext().getRequestDispatcher(
-				"/courses.jsp");
-		rd.forward(request, response);
-	}
+// 	protected void doPost(HttpServletRequest request,
+//			HttpServletResponse response) throws ServletException, IOException {
+//		String id = request.getParameter("id"); // keep it non-editable in UI
+//		if (id == null || "".equals(id)) {
+//			throw new ServletException("id missing for edit operation");
+//		}
+// 		String name = request.getParameter("name");
+//		String location = request.getParameter("location");
+//		Course c = new Course();
+//		c.setLocation(location);
+//		c.setName(name);
+//		//c.setId(id);
+//		MongoClient mongo = (MongoClient) request.getServletContext()
+//				.getAttribute("MONGO_CLIENT");
+//		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
+//		courseDAO.createEnrolledCourse(c);
+//		System.out.println("Course Added Successfully with id="+c.getId());
+//		request.setAttribute("success", "Course Added Successfully");
+//		List<Course> courses = courseDAO.readAllEnrolledCourse();
+//		request.setAttribute("enrolledCourses", courses);
+//
+//		RequestDispatcher rd = getServletContext().getRequestDispatcher(
+//				"/courses.jsp");
+//		rd.forward(request, response);
+//	}
  }

@@ -48,7 +48,7 @@
 	<%-- Courses List Logic --%>
 	<h1 class="ui horizontal divider header">
 	  <i class="bookmark icon"></i>
-	  SWAP &amp; DROP
+	  ENROLLED COURSES
 	</h1>
 	<div class="eight wide column">
 		<div style="min-height: 300px; max-height: 300px; overflow-y: auto;">
@@ -67,6 +67,9 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${requestScope.enrolledCourses}" var="enrolledCourse">
+							<c:url value="/enrolledCourses" var="enrolledURL">
+								<c:param name="id" value="${enrolledCourse.id}"></c:param>
+							</c:url>
 							<c:url value="/droppedCourses" var="droppedURL">
 								<c:param name="id" value="${enrolledCourse.id}"></c:param>
 								<c:param name="name" value="${enrolledCourse.name}"></c:param>

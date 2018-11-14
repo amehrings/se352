@@ -68,6 +68,7 @@
 								<c:param name="id" value="${courseCart.id}"></c:param>
 							</c:url>
 							<c:url value="/enrolledCourses" var="enrolledURL">
+								<c:param name="id" value="${courseCart.id}"></c:param>
 								<c:param name="name" value="${courseCart.name}"></c:param>
 								<c:param name="location" value="${courseCart.location}"></c:param>
 								<c:param name="professor" value="${courseCart.professor}"></c:param>

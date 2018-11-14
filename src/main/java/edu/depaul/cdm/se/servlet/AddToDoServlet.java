@@ -19,7 +19,7 @@ import edu.depaul.cdm.se.courses.MongoDBCourseDAO;
 import com.mongodb.MongoClient;
 
 @WebServlet("/addCourse")
-public class AddCourseServlet extends HttpServlet {
+public class AddToDoServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -7060758261496829905L;
 	private static final Logger LOG = LoggerFactory.getLogger("CampusConnect");
@@ -38,8 +38,22 @@ public class AddCourseServlet extends HttpServlet {
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
 		List<Course> courses;
 		
+		//if adding do item
+		if (request.getAttribute("itemToAdd") != null || !request.getAttribute("itemToAdd").equals("")) {
+			courseDAO.createToDo(request.getParameter("itemToAdd"));
+			LOG.info("toDo added!");
+			
+			request.setAttribute("success", "todo Added Successfully");
+			courses = courseDAO.readAllCourse();
+			List<String> toDoItems = courseDAO.readAllToDoItems();
+			request.setAttribute("courses", courses);
+			request.setAttribute("toDoItems", toDoItems);
+			
+			rd = getServletContext().getRequestDispatcher("/courses.jsp");
+			rd.forward(request, response);
+		}
 		//if adding course, but missing parameter	
-		if ((name == null || name.equals(""))
+		else if ((name == null || name.equals(""))
 				|| (location == null || location.equals(""))
 				|| (description == null || description.equals(""))
 				|| (professor == null || professor.equals(""))

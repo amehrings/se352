@@ -15,8 +15,8 @@ import edu.depaul.cdm.se.courses.MongoDBCourseDAO;
 
 import com.mongodb.MongoClient;
 
-@WebServlet("/deleteCourse")
-public class DeleteCourseServlet extends HttpServlet {
+@WebServlet("/deleteToDo")
+public class DeleteToDoServlet extends HttpServlet {
  	
 	private static final long serialVersionUID = 6798036766148281767L;
 	

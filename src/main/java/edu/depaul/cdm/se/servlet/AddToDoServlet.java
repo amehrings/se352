@@ -36,7 +36,7 @@ public class AddToDoServlet extends HttpServlet {
 		courses = courseDAO.readAllCourse();
 		todos = courseDAO.readAllToDoItems();
 		
-		//if adding do item
+		//if adding to do item
 		if (todo == null || todo.equals("")) {
 			request.setAttribute("todoError", "Field can't be empty.");
 		}

@@ -24,23 +24,19 @@ public class EditToDoServlet extends HttpServlet {
 	private static final long serialVersionUID = -6554920927964049383L;
 	private static final Logger LOG = LoggerFactory.getLogger("CampusConnect");
  	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		String newToDo = request.getParameter("newToDo");
 		
-		String id = request.getParameter("id");
-		
-		if (id == null || "".equals(id)) {
-			throw new ServletException("id missing for edit operation");
+		if (newToDo == null || "".equals(newToDo)) {
+			throw new ServletException("new To Do missing for edit operation");
 		}
 		
-		System.out.println("Course edit requested with id=" + id);
+		LOG.info("To Do edit GET requested for: " + newToDo);
 		
 		MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
 		
-		Course c = new Course();
-		c.setId(id);
-		c = courseDAO.readCourse(c);
-		request.setAttribute("course", c);
+		request.setAttribute("newToDo", newToDo);
 
 		List<Course> courses;
 		List<String> todos;
@@ -54,22 +50,23 @@ public class EditToDoServlet extends HttpServlet {
 	
  	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id"); // keep it non-editable in UI
-		if (id == null || "".equals(id)) {
-			throw new ServletException("id missing for edit operation");
+		String newToDo = request.getParameter("newToDo");		
+		if (newToDo == null || "".equals(newToDo)) {
+			throw new ServletException("new To Do missing for edit operation");
 		}
- 		String todo = request.getParameter("itemToAdd");
+		
+		LOG.info("To Do edit GET requested for: " + newToDo);
 		
 		MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
 		
-		if (todo == null || todo.equals("")) {
+		if (newToDo == null || "".equals(newToDo)) {
 			request.setAttribute("error", "Fields can't be empty");	
-			request.setAttribute("todo", todo);
+			request.setAttribute("todo", newToDo);
 
 		} else {
-			courseDAO.updateToDo(todo);
-			LOG.info("item edited successfully with id=" + id);
+			courseDAO.updateToDo(newToDo);
+			LOG.info("to do edited successfully with item: " + newToDo);
 			request.setAttribute("success", "todo edited successfully");
 		}
  		

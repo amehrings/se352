@@ -122,13 +122,28 @@
 				value="${requestScope.todoSuccess}"></c:out></strong>
 	</c:if>
 	<p id="toDoDesc">Add any action items for students here.</p>
-	<form action='<c:out value="${addToDoURL}"></c:out>' method="post" class="ui form">
-		<div class="field">
-			<label>Action item to add:</label>
-			<input type="text" name="itemToAdd" maxlength="30">
-		</div>
-		<button type="submit" class="ui button">Add To-Do</button>
-	</form>
+	
+	<c:if test="${requestScope.newToDo eq null}">
+		<form action='<c:out value="${addToDoURL}"></c:out>' method="post" class="ui form">
+			<div class="field">
+				<label>Action item to add:</label>
+				<input type="text" name="itemToAdd" maxlength="30">
+			</div>
+			<button type="submit" class="ui button">Add To-Do</button>
+		</form>
+	</c:if>
+	<!-- edit to do -->
+	<c:if test="${requestScope.newToDo ne null}">
+		<form action='<c:out value="${editToDoURL}"></c:out>' method="post" class="ui form">
+			<div class="field">
+				<label>Course ID: </label>
+				<input type="text" value="${requestScope.newToDo}" name="newToDo">
+			</div>
+				<button type="submit" class="ui button">Edit To-Do</button>
+		</form>
+	</c:if>
+	
+	
 	
 	<!-- listing to dos -->
 	<br> 
@@ -145,10 +160,10 @@
 				<tbody>
 					<c:forEach items="${requestScope.toDoItems}" var="todo">
 						<c:url value="/editToDo" var="editToDoURL">
-							<c:param name="id" value="${todo}"></c:param>
+							<c:param name="newToDo" value="${todo}"></c:param>
 						</c:url>
 						<c:url value="/deleteToDo" var="deleteToDoURL">
-							<c:param name="id" value="${todo}"></c:param>
+							<c:param name="newToDo" value="${todo}"></c:param>
 						</c:url>
 						<tr>
 							<td><c:out value="${todo}"></c:out></td>

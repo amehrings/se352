@@ -25,8 +25,8 @@
 	
 	<c:url value="/addCourse" var="addURL"></c:url>
 	<c:url value="/editCourse" var="editURL"></c:url>
-	<c:url value="courseScheduler" var="schedulerURL"></c:url>
 	<c:url value="/addToDo" var="addToDoURL"></c:url>
+	<c:url value="/editToDo" var="editToDoURL"></c:url>
 	
 	<h1>Admin View</h1> <a href="login.jsp">(Log Out)</a>
 	<br><br>
@@ -111,7 +111,7 @@
 	</c:if>
 	
 	<br><br>
-	
+	<!-- adding to-dos -->
 	<h2>To-Dos</h2>
 	<c:if test="${requestScope.todoError ne null}">
 		<strong style="color: red;"><c:out
@@ -129,6 +129,39 @@
 		</div>
 		<button type="submit" class="ui button">Add To-Do</button>
 	</form>
+	
+	<!-- listing to dos -->
+	<br> 
+	<c:if test="${not empty requestScope.toDoItems}">
+		<div class="" style="max-height:400px; overflow-y: auto;">
+			<table class="ui striped table">
+				<thead>
+					<tr>
+						<th>To Do</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${requestScope.toDoItems}" var="todo">
+						<c:url value="/editToDo" var="editToDoURL">
+							<c:param name="id" value="${todo}"></c:param>
+						</c:url>
+						<c:url value="/deleteToDo" var="deleteToDoURL">
+							<c:param name="id" value="${todo}"></c:param>
+						</c:url>
+						<tr>
+							<td><c:out value="${todo}"></c:out></td>
+							<td><a
+								href='<c:out value="${editToDoURL}" escapeXml="true"></c:out>'>Edit</a></td>
+							<td><a
+								href='<c:out value="${deleteToDoURL}" escapeXml="true"></c:out>'>Delete</a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</c:if>
 	
 	
 	

@@ -37,7 +37,9 @@ public class AddCourseServlet extends HttpServlet {
 		MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
 		List<Course> courses;
-		
+		List<String> todos;
+		courses = courseDAO.readAllCourse();
+		todos = courseDAO.readAllToDoItems();
 		//if adding course, but missing parameter	
 		if ((name == null || name.equals(""))
 				|| (location == null || location.equals(""))
@@ -45,9 +47,6 @@ public class AddCourseServlet extends HttpServlet {
 				|| (professor == null || professor.equals(""))
 				|| (times == null || times.equals(""))) {
 			request.setAttribute("error", "Mandatory Parameters Missing");
-			rd = getServletContext().getRequestDispatcher(
-					"/courses.jsp");
-			rd.forward(request, response);
 		} 
 		
 		//adding course
@@ -58,17 +57,15 @@ public class AddCourseServlet extends HttpServlet {
 			c.setDescription(description);
 			c.setTimes(times);
 			c.setProfessor(professor);
-			
 			courseDAO.createCourse(c);
 			LOG.info("Course Added Successfully with id="+c.getId());
 			request.setAttribute("success", "Course Added Successfully");
-			courses = courseDAO.readAllCourse();
-			request.setAttribute("courses", courses);
-
-			rd = getServletContext().getRequestDispatcher(
-					"/courses.jsp");
-			rd.forward(request, response);
 		}
+		
+		request.setAttribute("courses", courses);
+		request.setAttribute("toDoItems", todos);
+		rd = getServletContext().getRequestDispatcher("/courses.jsp");
+		rd.forward(request, response);
 	}
 }
 

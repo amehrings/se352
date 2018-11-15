@@ -10,15 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import edu.depaul.cdm.se.courses.Course;
 import edu.depaul.cdm.se.courses.MongoDBCourseDAO;
 
 import com.mongodb.MongoClient;
 
-@WebServlet("/editCourse")
-public class EditCoursesServlet extends HttpServlet {
+@WebServlet("/editToDo")
+public class EditToDoServlet extends HttpServlet {
  	
 	private static final long serialVersionUID = -6554920927964049383L;
+	private static final Logger LOG = LoggerFactory.getLogger("CampusConnect");
  	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -37,12 +41,16 @@ public class EditCoursesServlet extends HttpServlet {
 		c.setId(id);
 		c = courseDAO.readCourse(c);
 		request.setAttribute("course", c);
-		List<Course> courses = courseDAO.readAllCourse();
+
+		List<Course> courses;
+		List<String> todos;
+		courses = courseDAO.readAllCourse();
+		todos = courseDAO.readAllToDoItems();
+		request.setAttribute("toDoItems", todos);
 		request.setAttribute("courses", courses);
  		RequestDispatcher rd = getServletContext().getRequestDispatcher("/courses.jsp");
 		rd.forward(request, response);
 	}
-	
 	
  	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -50,35 +58,19 @@ public class EditCoursesServlet extends HttpServlet {
 		if (id == null || "".equals(id)) {
 			throw new ServletException("id missing for edit operation");
 		}
- 		String name = request.getParameter("name");
-		String location = request.getParameter("location");
-		String description = request.getParameter("description");
-		String professor = request.getParameter("professor");
-		String times = request.getParameter("times");
-		
-		Course c = new Course();
-		c.setId(id);
-		c.setName(name);
-		c.setLocation(location);
-		c.setDescription(description);
-		c.setTimes(times);
-		c.setProfessor(professor);
+ 		String todo = request.getParameter("itemToAdd");
 		
 		MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
 		
- 		if ((name == null || name.equals(""))
-				|| (location == null || location.equals(""))
-				|| (description == null || description.equals(""))
-				|| (professor == null || professor.equals(""))
-				|| (times == null || times.equals(""))) {
+		if (todo == null || todo.equals("")) {
 			request.setAttribute("error", "Fields can't be empty");	
-			request.setAttribute("course", c);
+			request.setAttribute("todo", todo);
 
 		} else {
-			courseDAO.updateCourse(c);
-			System.out.println("Course edited successfully with id=" + id);
-			request.setAttribute("success", "Course edited successfully");
+			courseDAO.updateToDo(todo);
+			LOG.info("item edited successfully with id=" + id);
+			request.setAttribute("success", "todo edited successfully");
 		}
  		
  		List<Course> courses = courseDAO.readAllCourse();

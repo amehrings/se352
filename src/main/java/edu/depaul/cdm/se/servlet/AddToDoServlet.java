@@ -32,28 +32,25 @@ public class AddToDoServlet extends HttpServlet {
 		MongoClient mongo = (MongoClient) request.getServletContext().getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
 		List<Course> courses;
+		List<String> todos;
+		courses = courseDAO.readAllCourse();
+		todos = courseDAO.readAllToDoItems();
 		
 		//if adding do item
 		if (todo == null || todo.equals("")) {
 			request.setAttribute("todoError", "Field can't be empty.");
-			courses = courseDAO.readAllCourse();
-			request.setAttribute("courses", courses);
-			rd = getServletContext().getRequestDispatcher("/courses.jsp");
-			rd.forward(request, response);
 		}
 		else {
 			courseDAO.createToDo(todo);
 			LOG.info("toDo added!");
-			
 			request.setAttribute("todoSuccess", "Task Added Successfully");
-			courses = courseDAO.readAllCourse();
-			List<String> toDoItems = courseDAO.readAllToDoItems();
-			request.setAttribute("courses", courses);
-			request.setAttribute("toDoItems", toDoItems);
-			
-			rd = getServletContext().getRequestDispatcher("/courses.jsp");
-			rd.forward(request, response);
 		}
+		
+		rd = getServletContext().getRequestDispatcher("/courses.jsp");
+		request.setAttribute("courses", courses);
+		request.setAttribute("toDoItems", todos);
+		rd.forward(request, response);
+		
 	}
 }
 

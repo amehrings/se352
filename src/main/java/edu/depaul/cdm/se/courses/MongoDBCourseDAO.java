@@ -172,6 +172,12 @@ public class MongoDBCourseDAO {
 		this.toDoItemsCol.insert(toDBObject(toDo));
 	}
  	
+ 	public void updateToDo(String toDo) { //hmmm...
+		DBObject query = BasicDBObjectBuilder.start()
+				.append("_id", toDo).get();
+		this.toDoItemsCol.update(query, toDBObject(toDo));
+	}
+ 	
  	public void checkItem(String item) {
  		DBObject query = BasicDBObjectBuilder.start()
 				.append("item", item).get();

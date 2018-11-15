@@ -22,18 +22,17 @@ public class DeleteToDoServlet extends HttpServlet {
 	
  	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
-		if (id == null || "".equals(id)) {
-			throw new ServletException("id missing for delete operation");
+ 		String toDo = request.getParameter("toDoDel");		
+		if (toDo == null || "".equals(toDo)) {
+			throw new ServletException("new To Do missing for edit operation");
 		}
 		MongoClient mongo = (MongoClient) request.getServletContext()
 				.getAttribute("MONGO_CLIENT");
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
-		Course c = new Course();
-		c.setId(id);
-		courseDAO.deleteCourse(c);
-		System.out.println("Course deleted successfully with id=" + id);
-		request.setAttribute("success", "Course deleted successfully");
+		
+		courseDAO.deleteToDo(toDo);
+		System.out.println("Course deleted successfully with text: " + toDo);
+		request.setAttribute("todoSuccess", "To Do deleted successfully");
 		
 		List<Course> courses;
 		List<String> todos;

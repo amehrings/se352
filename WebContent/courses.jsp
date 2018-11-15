@@ -163,7 +163,7 @@
 							<c:param name="newToDo" value="${todo}"></c:param>
 						</c:url>
 						<c:url value="/deleteToDo" var="deleteToDoURL">
-							<c:param name="newToDo" value="${todo}"></c:param>
+							<c:param name="toDoDel" value="${todo}"></c:param>
 						</c:url>
 						<tr>
 							<td><c:out value="${todo}"></c:out></td>

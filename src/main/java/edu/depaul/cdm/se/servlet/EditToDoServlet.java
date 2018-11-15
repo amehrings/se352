@@ -61,13 +61,13 @@ public class EditToDoServlet extends HttpServlet {
 		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
 		
 		if (newToDo == null || "".equals(newToDo)) {
-			request.setAttribute("error", "Fields can't be empty");	
+			request.setAttribute("todoError", "Fields can't be empty");	
 			request.setAttribute("todo", newToDo);
 
 		} else {
 			courseDAO.updateToDo(newToDo);
 			LOG.info("to do edited successfully with item: " + newToDo);
-			request.setAttribute("success", "todo edited successfully");
+			request.setAttribute("todoSuccess", "todo edited successfully");
 		}
  		
  		List<Course> courses = courseDAO.readAllCourse();

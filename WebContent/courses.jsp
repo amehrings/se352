@@ -32,15 +32,6 @@
 	<br><br>
 	<h2>Add/Edit/Delete Courses</h2>
 	<div class="ui divider"></div>
-	<form action="enrollCourse">
-		<button type="submit" class="ui button primary">Enroll in Courses</button>
-		<button type="submit" formaction="getCourses" class="ui button secondary">View Course Scheduler</button>
-		
-	</form>
-	<!-- <form action="getCourses">
-		<button type="submit" formaction="getCourses" class="ui button secondary">View Course Scheduler</button>
-	</form> -->
-	<div class="ui divider"></div>
 	<%-- Course Add/Edit logic --%>
 	<c:if test="${requestScope.error ne null}">
 		<strong style="color: red;"><c:out

@@ -168,11 +168,14 @@ public class MongoDBCourseDAO {
 		DBObject query = BasicDBObjectBuilder.start()
 				.append("_id", new ObjectId(c1.getId())).get();
 		this.enrolledCol.remove(query);	
+<<<<<<< HEAD
 		
 		DBObject query2 = BasicDBObjectBuilder.start()
 				.append("_id", new ObjectId(c2.getId())).get();
 		this.courseCartCol.remove(query2);	
 		
+=======
+>>>>>>> 802f39eec39219f8890dd1790f55da168339a5c7
  	}
  	
  	public Course readCourse(Course c) {
@@ -197,9 +200,6 @@ public class MongoDBCourseDAO {
  	public static DBObject toDBObject(String item) {
 		BasicDBObjectBuilder builder = BasicDBObjectBuilder.start()
 				.append("item", item);
-				
-//		if (item != null)
-//			builder = builder.append("_id", new ObjectId(item));
 		return builder.get();
 	}
  	

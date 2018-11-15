@@ -39,12 +39,14 @@
 	    Dropped
 	  </a>
 	</div>
-	<h1 class="ui horizontal divider header">
-	  <i class="search icon"></i>
-	  SEARCH
-	</h1>
-					
+	
 	<div class="paddings">
+		<h1 class="ui horizontal divider header">
+		  <i class="search icon"></i>
+		  SEARCH
+		</h1>
+					
+
 	<c:url value="courseScheduler" var="schedulerURL"></c:url>
 
 	<%-- Search Request --%>

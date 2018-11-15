@@ -43,7 +43,16 @@ public class EnrollCourseServlet extends HttpServlet {
 			c.setProfessor(professor);
 			c.setTimes(times);
 			c.setDescription(description);
+			
+			List<Course> courseCartCourses = courseDAO.readAllCourseCart();
+			for(Course course: courseCartCourses) {
+				if(c.getId().equals(course.getId())) {
+					courseDAO.removeCourseCartCourse(course);
+				}
+			}
+			
 			courseDAO.addCourseCartCourse(c);
+
 		}
 		
 		List<Course> courseCart = courseDAO.readAllCourseCart();

@@ -46,7 +46,7 @@
 	</div>
 		
 	<div class="paddings">
-	<h1>SWAP COURSE</h1>
+	<h1>SWAP COURSE FROM COURSE CART</h1>
 	<%-- Courses List Logic --%>
 	<div class="eight wide column">
 		<div style="min-height: 300px; max-height: 300px; overflow-y: auto;">

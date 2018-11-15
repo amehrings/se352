@@ -36,7 +36,23 @@ public class EnrolledCoursesServlet extends HttpServlet {
 			c.setProfessor(professor);
 			c.setTimes(times);
 			c.setDescription(description);
+			
+			List<Course> enrolledCourses = courseDAO.readAllEnrolledCourse();
+			for(Course course: enrolledCourses) {
+				if(c.getId().equals(course.getId())) {
+					courseDAO.deleteEnrolledCourse(course);
+				}
+			}
+			
+			List<Course> droppedCourses = courseDAO.readAllDroppedCourse();
+			for(Course course: droppedCourses) {
+				if(c.getId().equals(course.getId())) {
+					courseDAO.removeFromDropped(course);
+				}
+			}
+			
 			courseDAO.enrollCourse(c);
+			courseDAO.removeCourseCartCourse(c);
 		}
 
 		List<Course> enrolledCourses = courseDAO.readAllEnrolledCourse();
@@ -45,29 +61,4 @@ public class EnrolledCoursesServlet extends HttpServlet {
 				"/enrolledCourses.jsp");
 		rd.forward(request, response);
 	}
-// 	protected void doPost(HttpServletRequest request,
-//			HttpServletResponse response) throws ServletException, IOException {
-//		String id = request.getParameter("id"); // keep it non-editable in UI
-//		if (id == null || "".equals(id)) {
-//			throw new ServletException("id missing for edit operation");
-//		}
-// 		String name = request.getParameter("name");
-//		String location = request.getParameter("location");
-//		Course c = new Course();
-//		c.setLocation(location);
-//		c.setName(name);
-//		//c.setId(id);
-//		MongoClient mongo = (MongoClient) request.getServletContext()
-//				.getAttribute("MONGO_CLIENT");
-//		MongoDBCourseDAO courseDAO = new MongoDBCourseDAO(mongo);
-//		courseDAO.createEnrolledCourse(c);
-//		System.out.println("Course Added Successfully with id="+c.getId());
-//		request.setAttribute("success", "Course Added Successfully");
-//		List<Course> courses = courseDAO.readAllEnrolledCourse();
-//		request.setAttribute("enrolledCourses", courses);
-//
-//		RequestDispatcher rd = getServletContext().getRequestDispatcher(
-//				"/courses.jsp");
-//		rd.forward(request, response);
-//	}
  }

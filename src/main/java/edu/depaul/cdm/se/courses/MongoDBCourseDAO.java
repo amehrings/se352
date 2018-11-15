@@ -131,6 +131,12 @@ public class MongoDBCourseDAO {
 		this.enrolledCol.remove(query);
 	}
  	
+ 	public void removeFromDropped(Course c) {
+		DBObject query = BasicDBObjectBuilder.start()
+				.append("_id", new ObjectId(c.getId())).get();
+		this.droppedCol.remove(query);
+	}
+ 	
  	public void removeCourseCartCourse(Course c) {
 		DBObject query = BasicDBObjectBuilder.start()
 				.append("_id", new ObjectId(c.getId())).get();
@@ -156,9 +162,16 @@ public class MongoDBCourseDAO {
  		DBObject doc = CourseConverter.toDBObject(c2);
 		this.enrolledCol.insert(doc);
 		
+		DBObject doc2 = CourseConverter.toDBObject(c1);
+		this.courseCartCol.insert(doc2);
+		
 		DBObject query = BasicDBObjectBuilder.start()
 				.append("_id", new ObjectId(c1.getId())).get();
 		this.enrolledCol.remove(query);	
+		
+		DBObject query2 = BasicDBObjectBuilder.start()
+				.append("_id", new ObjectId(c2.getId())).get();
+		this.courseCartCol.remove(query2);	
  	}
  	
  	public Course readCourse(Course c) {

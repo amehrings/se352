@@ -131,3 +131,8 @@ The requirements were to have 3 major functionalities, use a database, and Javas
 |Mockups|Swapping a class you’re enrolled in for a class in your course cart.|Students view and mark tasks complete.|
 
 As a team, we have worked on many projects together over the last 2 years. If a team member is unable to deliver for whatever reason, we are able to cover some of the work for them. Since we know each other well, we know we won’t have consistent delivery issues.
+
+#### Final Screenshots
+
+![successful build](images/final_build.png)
+![running server](images/final_server.png)
